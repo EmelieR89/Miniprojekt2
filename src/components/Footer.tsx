@@ -9,6 +9,6 @@ export default class Footer extends Component<Props> {
 
   render() {
   return (
-    <h1>hej</h1>
+    <h1>footer hej</h1>
   )}
 }
