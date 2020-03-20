@@ -1,5 +1,6 @@
 import React, { CSSProperties } from "react";
-import { Menu, Box, Heading, Anchor, Nav } from "grommet";
+import { Link } from "react-router-dom";
+import { Box, Heading, Anchor, Nav, DropButton } from "grommet";
 import { Menu as Hamburger, Home, Cart, Favorite } from "grommet-icons";
 
 interface Props {}
@@ -8,7 +9,9 @@ export default class Header extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
+
   render() {
+   
     return (
       <Box
         tag="header"
@@ -21,20 +24,29 @@ export default class Header extends React.Component<Props> {
         // style={{ zIndex: "1" }}
         {...this.props}
       >
-        <Menu
+        <DropButton
           label={<Hamburger />}
-          items={[
-            { label: "Produkter", href: "#" },
-            { label: "Kassa", href: "#" }
-          ]}
+          dropAlign={{ top: "bottom", right: "right" }}
+          dropContent={
+            <Box pad="large" background="light-2">
+              {/*             <Link to="/OmOss">Cart</Link>
+               */}
+              <Link to="/CartPage">Cart</Link>
+            </Box>
+          }
         />
+
         <Heading level="2" style={styleHeading}>
-          <img src="./KerstinsLogo.png" alt="logo" style={imgStyle}/>
+          <img src="./KerstinsLogo.png" alt="logo" style={imgStyle} />
         </Heading>
         <Nav direction="row" background="brand" pad="medium">
-          <Anchor icon={<Home />} />
-          <Anchor icon={<Favorite />} />
-          <Anchor icon={<Cart />} />
+          <Link to="/">
+            <Anchor icon={<Home />}/>
+          </Link>
+         <Link to="/"> <Anchor icon={<Favorite />} /> </Link>
+          <Link to="/CartPage">
+            <Anchor icon={<Cart />} />
+          </Link>
         </Nav>
       </Box>
     );
@@ -47,5 +59,5 @@ const styleHeading: CSSProperties = {
 };
 
 const imgStyle: CSSProperties = {
-  height: "8rem",
-}
+  height: "8rem"
+};
