@@ -15,26 +15,26 @@ export default class Header extends React.Component<Props> {
         direction="row"
         align="center"
         justify="between"
-        background="#a69b97"
+        background="#d7ccc8"
         pad={{ left: "medium", right: "small", vertical: "small" }}
         elevation="medium"
         // style={{ zIndex: "1" }}
         {...this.props}
       >
         <Menu
-          label={<Hamburger />}
+          label={<Hamburger /> } 
           items={[
-            { label: "Produkter", href: "#" },
+            { label: "Produkter", href: "#"},
             { label: "Kassa", href: "#" }
           ]}
         />
         <Heading level="2" style={styleHeading}>
           <img src="./KerstinsLogo.png" alt="logo" style={imgStyle}/>
         </Heading>
-        <Nav direction="row" background="brand" pad="medium">
-          <Anchor icon={<Home />} />
-          <Anchor icon={<Favorite />} />
-          <Anchor icon={<Cart />} />
+        <Nav direction="row" background="#d7ccc8" pad="medium">
+          <Anchor icon={<Home />} color="#8c7b75" />
+          <Anchor icon={<Favorite/>} color="#8c7b75" />
+          <Anchor icon={<Cart />} color="#8c7b75" />
         </Nav>
       </Box>
     );
@@ -49,3 +49,4 @@ const styleHeading: CSSProperties = {
 const imgStyle: CSSProperties = {
   height: "8rem",
 }
+
