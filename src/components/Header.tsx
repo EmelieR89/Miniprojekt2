@@ -29,7 +29,7 @@ export default class Header extends React.Component<Props> {
           ]}
         />
         <Heading level="2" style={styleHeading}>
-          Namn
+          <img src="./KerstinsLogo.png" alt="logo" style={imgStyle}/>
         </Heading>
         <Nav direction="row" background="brand" pad="medium">
           <Anchor icon={<Home />} />
@@ -42,5 +42,10 @@ export default class Header extends React.Component<Props> {
 }
 
 const styleHeading: CSSProperties = {
-  color: "black"
+  color: "black",
+  margin: 0
 };
+
+const imgStyle: CSSProperties = {
+  height: "8rem",
+}
