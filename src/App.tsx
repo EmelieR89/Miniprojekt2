@@ -10,13 +10,18 @@ import CartPage from "./components/CartPage";
 const theme = {
   global: {
     colors: {
-      brand: "#228BE6"
+      brand: "#228BE6",
+      control:"light"
     },
     font: {
-      family: "Roboto", // Vilken font ska vi ha?
+      family: "Baloo 2, cursive", // Vilken font ska vi ha?
       size: "18px",
       height: "20px"
+    },
+    menu: {
+      background: "light"
     }
+
   }
 };
 

@@ -18,7 +18,7 @@ export default class Header extends React.Component<Props> {
         direction="row"
         align="center"
         justify="between"
-        background="brand"
+        background="#d7ccc8"
         pad={{ left: "medium", right: "small", vertical: "small" }}
         elevation="medium"
         // style={{ zIndex: "1" }}
@@ -39,13 +39,13 @@ export default class Header extends React.Component<Props> {
         <Heading level="2" style={styleHeading}>
           <img src="./KerstinsLogo.png" alt="logo" style={imgStyle} />
         </Heading>
-        <Nav direction="row" background="brand" pad="medium">
+        <Nav direction="row" background="#d7ccc8" pad="medium">
           <Link to="/">
-            <Anchor icon={<Home />}/>
+            <Anchor icon={<Home />} color="#8c7b75"/>
           </Link>
-         <Link to="/"> <Anchor icon={<Favorite />} /> </Link>
+         <Link to="/"> <Anchor icon={<Favorite />} color="#8c7b75"/> </Link>
           <Link to="/CartPage">
-            <Anchor icon={<Cart />} />
+            <Anchor icon={<Cart />} color="#8c7b75"/>
           </Link>
         </Nav>
       </Box>
@@ -59,5 +59,6 @@ const styleHeading: CSSProperties = {
 };
 
 const imgStyle: CSSProperties = {
-  height: "8rem"
-};
+  height: "8rem",
+}
+
