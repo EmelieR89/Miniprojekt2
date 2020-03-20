@@ -15,7 +15,7 @@ export default class Header extends React.Component<Props> {
         direction="row"
         align="center"
         justify="between"
-        background="brand"
+        background="#a69b97"
         pad={{ left: "medium", right: "small", vertical: "small" }}
         elevation="medium"
         // style={{ zIndex: "1" }}
