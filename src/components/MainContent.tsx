@@ -1,5 +1,5 @@
-import React, { Component, CSSProperties } from "react";
-import { Grid, Box, ResponsiveContext } from "grommet";
+import React, { Component } from "react";
+import { Grid, Box, ResponsiveContext, grommet } from "grommet";
 import Card from "./Card";
 import Image from "../assets/ceramics1.jpg";
 import Image2 from "../assets/ceramics2.jpg";
@@ -40,13 +40,12 @@ const productData: AppEvent[] = [
   }
 ];
 
-export default class MainContent extends Component<Props> {
+export default class MainContent extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
   render() {
-    console.log('rerender...')
     return (
       <ResponsiveContext.Consumer>
         {size => (
@@ -55,10 +54,21 @@ export default class MainContent extends Component<Props> {
             justifyContent="center"
             margin="2rem"
             //Medium här för desktop, annars small
-            rows={['medium', 'medium']}
-            columns={['auto', 'auto']}
-/*             {size === 'xsmall' ? ['auto'] : (size === 'medium' ? ['auto', 'auto'] : ['auto', 'auto', 'auto'])}
- */            gap="small"
+            rows={
+              size === "xsmall"
+                ? ["small", "small"]
+                : size === "small"
+                ? ["small", "small"]
+                : ["medium", "medium"]
+            }
+            columns={
+              size === "xsmall"
+                ? ["small", "small"]
+                : size === "small"
+                ? ["small", "small"]
+                : ["medium", "medium"]
+            }
+            gap={size === "xsmall" ? "small" : "large"}
             areas={[
               { name: "box1", start: [0, 0], end: [1, 0] },
               { name: "box2", start: [1, 0], end: [1, 1] },
@@ -79,7 +89,6 @@ export default class MainContent extends Component<Props> {
           </Grid>
         )}
       </ResponsiveContext.Consumer>
-
     );
   }
 }

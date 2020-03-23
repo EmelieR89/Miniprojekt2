@@ -45,14 +45,14 @@ const customBreakpoints = deepMerge(grommet, {
 function App() {
   return (
     <BrowserRouter>
-      <Grommet theme={{ ...theme, ...customBreakpoints }}>
-              <Header />
-              <Switch>
-                <Route path="/" exact component={MainContent} />
-                <Route path="/product/:productID" component={ProductPage} />
-                <Route path="/CartPage" component={CartPage} />
-              </Switch>
-              <Footer />
+      <Grommet theme={{ ...theme, ...customBreakpoints }} full>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={MainContent} />
+          <Route path="/product/:productID" component={ProductPage} />
+          <Route path="/CartPage" component={CartPage} />
+        </Switch>
+        <Footer />
       </Grommet>
     </BrowserRouter>
   );

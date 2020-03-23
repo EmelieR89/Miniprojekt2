@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, CSSProperties } from "react";
 import { Footer as AFooter, Anchor } from "grommet";
 import { Facebook, Instagram, Mail } from "grommet-icons";
 
