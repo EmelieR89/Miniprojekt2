@@ -11,7 +11,6 @@ export default class Header extends React.Component<Props> {
   }
 
   render() {
-   
     return (
       <Box
         tag="header"
@@ -24,28 +23,34 @@ export default class Header extends React.Component<Props> {
         // style={{ zIndex: "1" }}
         {...this.props}
       >
-        <DropButton
-          label={<Hamburger />}
-          dropAlign={{ top: "bottom", right: "right" }}
-          dropContent={
-            <Box pad="large" background="light-2">
-              {/*             <Link to="/OmOss">Cart</Link>
-               */}
-              <Link to="/CartPage">Cart</Link>
-            </Box>
-          }
-        />
+        <div style={firstPartOfHeader}>
+          <DropButton
+            label={<Hamburger />}
+            plain
+            dropAlign={{ top: "bottom", right: "right" }}
+            dropContent={
+              <Box pad="large" background="light-2">
+                {/*             <Link to="/OmOss">Cart</Link>
+                 */}
+                <Link to="/CartPage">Cart</Link>
+              </Box>
+            }
+          />
 
-        <Heading level="2" style={styleHeading}>
-          <img src="./KerstinsLogo.png" alt="logo" style={imgStyle} />
-        </Heading>
+          <Heading level="2" style={styleHeading}>
+            <img src="./KerstinsLogo.png" alt="logo" style={imgStyle} />
+          </Heading>
+        </div>
         <Nav direction="row" background="#d7ccc8" pad="medium">
           <Link to="/">
-            <Anchor icon={<Home />} color="#8c7b75"/>
+            <Anchor icon={<Home />} color="#8c7b75" />
           </Link>
-         <Link to="/"> <Anchor icon={<Favorite />} color="#8c7b75"/> </Link>
+          <Link to="/">
+            {" "}
+            <Anchor icon={<Favorite />} color="#8c7b75" />{" "}
+          </Link>
           <Link to="/CartPage">
-            <Anchor icon={<Cart />} color="#8c7b75"/>
+            <Anchor icon={<Cart />} color="#8c7b75" />
           </Link>
         </Nav>
       </Box>
@@ -55,10 +60,13 @@ export default class Header extends React.Component<Props> {
 
 const styleHeading: CSSProperties = {
   color: "black",
-  margin: 0
+  margin: "0 0 0 3rem"
 };
 
 const imgStyle: CSSProperties = {
-  height: "8rem",
-}
+  height: "8rem"
+};
 
+const firstPartOfHeader: CSSProperties = {
+  display: "flex"
+};
