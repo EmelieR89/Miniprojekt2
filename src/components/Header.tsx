@@ -41,7 +41,7 @@ export default class Header extends React.Component<Props> {
             <img src="./KerstinLogga.PNG" alt="logo" style={imgStyle} />
           </Heading>
         </div>
-        <Nav direction="row" background="#d7ccc8" pad="medium">
+        {/* <Nav direction="row" background="#d7ccc8" pad="medium">
           <Link to="/">
             <Anchor icon={<Home />} color="#8c7b75" />
           </Link>
@@ -52,7 +52,7 @@ export default class Header extends React.Component<Props> {
           <Link to="/CartPage">
             <Anchor icon={<Cart />} color="#8c7b75" />
           </Link>
-        </Nav>
+        </Nav> */}
       </Box>
     );
   }

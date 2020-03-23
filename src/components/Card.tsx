@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { Box, Image as Picture, Paragraph, Button } from "grommet";
+import { Box, Image as Picture, Paragraph, Button, ResponsiveContext } from "grommet";
 import { Cart, Favorite } from "grommet-icons";
 import { AppEvent } from "./MainContent";
 
@@ -14,26 +14,30 @@ export default class Card extends React.Component<Props> {
 
   render() {
     return (
-      <Box direction="column" justify="center" align="center">
-        <Box>
-          <Picture fit="cover" src={this.props.event.mainImg} />
-          <Paragraph margin="1rem">{this.props.event.productText}</Paragraph>
-        </Box>
-        <div style={buttonStyles}>
-          <Button
-            icon={<Favorite />}
-            // label="Add to Cart"
-            // onClick={() => {}}
-            color="blue"
-          />
-          <Button
-            icon={<Cart />}
-            // label="Add to Cart"
-            // onClick={() => {}}
-            color="blue"
-          />
-        </div>
-      </Box>
+      <ResponsiveContext.Consumer>
+        {size => (
+           <Box direction="column" justify="center" align="center">
+           <Box>
+             <Picture fit="cover" src={this.props.event.mainImg} />
+             <Paragraph margin="0.5rem">{this.props.event.productText}</Paragraph>
+           </Box>
+           <div style={buttonStyles}>
+             <Button
+               icon={<Favorite size="small"/>}
+               // label="Add to Cart"
+               // onClick={() => {}}
+               color="blue"
+             />
+             <Button
+               icon={<Cart size="small"/>}
+               // label="Add to Cart"
+               // onClick={() => {}}
+               color="blue"
+             />
+           </div>
+         </Box>
+        )}
+     </ResponsiveContext.Consumer>
     );
   }
 }

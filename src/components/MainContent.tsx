@@ -1,5 +1,5 @@
 import React, { Component, CSSProperties } from "react";
-import { Grid, Box } from "grommet";
+import { Grid, Box, ResponsiveContext } from "grommet";
 import Card from "./Card";
 import Image from "../assets/ceramics1.jpg";
 import Image2 from "../assets/ceramics2.jpg";
@@ -46,31 +46,40 @@ export default class MainContent extends Component<Props> {
   }
 
   render() {
+    console.log('rerender...')
     return (
-      <Grid
-        justifyContent="center"
-        margin="2rem"
-        rows={["medium", "medium"]}
-        columns={["medium", "medium"]}
-        gap="large"
-        areas={[
-          { name: "box1", start: [0, 0], end: [1, 0] },
-          { name: "box2", start: [1, 0], end: [1, 1] },
-          { name: "box3", start: [0, 1], end: [0, 1] },
-          { name: "box4", start: [1, 1], end: [1, 1] }
-        ]}
-      >
-        {productData.map(event => (
-          <Box
-            gridArea={event.id}
-            background="light-2"
-            elevation="medium"
-            key={event.productText}
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Grid
+            responsive
+            justifyContent="center"
+            margin="2rem"
+            //Medium här för desktop, annars small
+            rows={['medium', 'medium']}
+            columns={['auto', 'auto']}
+/*             {size === 'xsmall' ? ['auto'] : (size === 'medium' ? ['auto', 'auto'] : ['auto', 'auto', 'auto'])}
+ */            gap="small"
+            areas={[
+              { name: "box1", start: [0, 0], end: [1, 0] },
+              { name: "box2", start: [1, 0], end: [1, 1] },
+              { name: "box3", start: [0, 1], end: [0, 1] },
+              { name: "box4", start: [1, 1], end: [1, 1] }
+            ]}
           >
-            <Card event={event} />
-          </Box>
-        ))}
-      </Grid>
+            {productData.map(event => (
+              <Box
+                gridArea={event.id}
+                background="light-2"
+                elevation="medium"
+                key={event.productText}
+              >
+                <Card event={event} />
+              </Box>
+            ))}
+          </Grid>
+        )}
+      </ResponsiveContext.Consumer>
+
     );
   }
 }
