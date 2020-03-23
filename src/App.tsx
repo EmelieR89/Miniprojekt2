@@ -35,8 +35,7 @@ const customBreakpoints = deepMerge(grommet, {
       small: {
         value: 900
       },
-      medium: undefined,
-      middle: {
+      medium: {
         value: 2000
       }
     }
@@ -47,9 +46,6 @@ function App() {
   return (
     <BrowserRouter>
       <Grommet theme={{ ...theme, ...customBreakpoints }}>
-        <ResponsiveContext.Consumer>
-          {size => (
-            <div>
               <Header />
               <Switch>
                 <Route path="/" exact component={MainContent} />
@@ -57,9 +53,6 @@ function App() {
                 <Route path="/CartPage" component={CartPage} />
               </Switch>
               <Footer />
-            </div>
-          )}
-        </ResponsiveContext.Consumer>
       </Grommet>
     </BrowserRouter>
   );
