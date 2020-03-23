@@ -1,8 +1,44 @@
-import React, { Component } from "react";
+import React, { Component, CSSProperties } from "react";
+import { Grid, Box } from "grommet";
+import Card from "./Card";
 import Image from "../assets/ceramics1.jpg";
-import { Grid, Box, Image as Picture } from "grommet";
+import Image2 from "../assets/ceramics2.jpg";
+import Image3 from "../assets/ceramics3.jpg";
+import Image4 from "../assets/ceramics4.jpg";
 
 interface Props {}
+
+export interface AppEvent {
+  mainImg: string;
+  productText: string;
+  id: string;
+}
+
+const productData: AppEvent[] = [
+  {
+    mainImg: Image,
+    productText: "Info om product 1",
+    id: "box1"
+  },
+
+  {
+    mainImg: Image2,
+    productText: "Info om product 2",
+    id: "box2"
+  },
+
+  {
+    mainImg: Image3,
+    productText: "Info om product 3",
+    id: "box3"
+  },
+
+  {
+    mainImg: Image4,
+    productText: "Info om product 4",
+    id: "box4"
+  }
+];
 
 export default class MainContent extends Component<Props> {
   constructor(props: Props) {
@@ -12,10 +48,11 @@ export default class MainContent extends Component<Props> {
   render() {
     return (
       <Grid
+        justifyContent="center"
         margin="2rem"
-        rows={["auto", "auto"]}
-        columns={["auto", "auto"]}
-        gap="medium"
+        rows={["medium", "medium"]}
+        columns={["medium", "medium"]}
+        gap="large"
         areas={[
           { name: "box1", start: [0, 0], end: [1, 0] },
           { name: "box2", start: [1, 0], end: [1, 1] },
@@ -23,26 +60,16 @@ export default class MainContent extends Component<Props> {
           { name: "box4", start: [1, 1], end: [1, 1] }
         ]}
       >
-        <Box gridArea="box1" background="light-2" elevation="medium">
-          <Box height="medium" width="medium">
-            <Picture fit="cover" src={Image} />
+        {productData.map(event => (
+          <Box
+            gridArea={event.id}
+            background="light-2"
+            elevation="medium"
+            key={event.productText}
+          >
+            <Card event={event} />
           </Box>
-        </Box>
-        <Box gridArea="box2" background="light-2" elevation="medium">
-          <Box height="medium" width="medium">
-            <Picture fit="cover" src={Image} />
-          </Box>
-        </Box>
-        <Box gridArea="box3" background="light-2" elevation="medium">
-          <Box height="medium" width="medium">
-            <Picture fit="cover" src={Image} />
-          </Box>
-        </Box>
-        <Box gridArea="box4" background="light-2" elevation="medium">
-          <Box height="medium" width="medium">
-            <Picture fit="cover" src={Image} />
-          </Box>
-        </Box>
+        ))}
       </Grid>
     );
   }
