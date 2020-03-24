@@ -12,19 +12,19 @@ export default class CartPage extends Component<Props> {
   render() {
     return (
       <Box align={"center"} responsive={true}>
-         <Form >
-      <FormField name="name" label="Namn" required={true} />
-      <FormField name="address" label="Adress" required={true}/>
-      <FormField name="telefonnummer" label="Telefonnummer" />
-      <FormField name="mail" label="Mail" required={true}/>
-      <FormField
-        label="Land"
-        name="select"
-        component={Select}
-        options={["Sverige", "Norge", "Finland"]}
-      />
-      <Button type="submit" label="Submit" primary={true} />
-    </Form>
+        <Form>
+          <FormField name="name" label="Namn" required={true} />
+          <FormField name="address" label="Adress" required={true} />
+          <FormField name="telefonnummer" label="Telefonnummer" />
+          <FormField name="mail" label="Mail" required={true} />
+          <FormField
+            label="Land"
+            name="select"
+            component={Select}
+            options={["Sverige", "Norge", "Finland"]}
+          />
+          <Button type="submit" label="Submit" primary={true} />
+        </Form>
       </Box>
     );
   }
