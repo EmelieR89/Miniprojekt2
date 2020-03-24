@@ -1,5 +1,5 @@
-import React from "react";
-import { Grommet, ResponsiveContext } from "grommet";
+import React, { CSSProperties } from "react";
+import { Grommet, ResponsiveContext, Box } from "grommet";
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet/themes";
 import Header from "./components/Header";
@@ -47,8 +47,8 @@ const customBreakpoints = deepMerge(grommet, {
 export default class App extends React.Component<Props> {
   render() {
     return (
-      <BrowserRouter>
-        <Grommet theme={{ ...theme, ...customBreakpoints }} full>
+      <BrowserRouter> 
+        <Grommet theme={{...theme, ...customBreakpoints }} full={true}>
           <Header />
           <Switch>
             <Route path="/" exact component={MainContent} />
@@ -61,3 +61,4 @@ export default class App extends React.Component<Props> {
     );
   }
 }
+
