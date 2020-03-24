@@ -1,13 +1,14 @@
 import React, { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import {
   Box,
   Image as Picture,
   Paragraph,
   Button,
-  ResponsiveContext
+  ResponsiveContext,
 } from "grommet";
 import { Cart, Favorite } from "grommet-icons";
-import { AppEvent } from "./MainContent";
+import { productData, AppEvent } from "./ProductData"
 
 interface Props {
   event: AppEvent;
@@ -74,6 +75,12 @@ export default class Card extends React.Component<Props> {
                 // onClick={() => {}}
                 color="blue"
               />
+              <Link to="/ProductPage">
+                <Button label="Läs mer" 
+                size="small"
+                color="#8c7b75"
+                />
+              </Link>
             </div>
           </Box>
         )}
