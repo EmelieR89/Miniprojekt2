@@ -1,5 +1,5 @@
 import React from "react";
-import { Grommet, ResponsiveContext } from "grommet";
+import { Grommet } from "grommet";
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet/themes";
 import Header from "./components/Header";
@@ -8,22 +8,21 @@ import Footer from "./components/Footer";
 import MainContent from "./components/MainContent";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
-
-interface Props {}
+import { CartProvider } from "../src/components/CartContext";
 
 const theme = {
   global: {
     colors: {
       brand: "#228BE6",
-      control: "light",
-      font: {
-        family: "Baloo 2, cursive",
-        size: "18px",
-        height: "20px"
-      },
-      menu: {
-        background: "light"
-      }
+      control: "light"
+    },
+    font: {
+      family: "Baloo 2, cursive",
+      size: "18px",
+      height: "20px"
+    },
+    menu: {
+      background: "light"
     }
   }
 };
@@ -44,20 +43,23 @@ const customBreakpoints = deepMerge(grommet, {
   }
 });
 
-export default class App extends React.Component<Props> {
-  render() {
-    return (
-      <BrowserRouter>
+function App() {
+  return (
+    <BrowserRouter>
+      <CartProvider>
         <Grommet theme={{ ...theme, ...customBreakpoints }} full>
           <Header />
+
           <Switch>
             <Route path="/" exact component={MainContent} />
+            <Route path="/product/:productID" component={ProductPage} />
             <Route path="/CartPage" component={CartPage} />
-            <Route path="/ProductPage" component={ProductPage} />
           </Switch>
           <Footer />
         </Grommet>
-      </BrowserRouter>
-    );
-  }
+      </CartProvider>
+    </BrowserRouter>
+  );
 }
+
+export default App;
