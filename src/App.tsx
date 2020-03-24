@@ -9,19 +9,21 @@ import MainContent from "./components/MainContent";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
 
+interface Props {}
+
 const theme = {
   global: {
     colors: {
       brand: "#228BE6",
-      control: "light"
-    },
-    font: {
-      family: "Baloo 2, cursive",
-      size: "18px",
-      height: "20px"
-    },
-    menu: {
-      background: "light"
+      control: "light",
+      font: {
+        family: "Baloo 2, cursive",
+        size: "18px",
+        height: "20px"
+      },
+      menu: {
+        background: "light"
+      }
     }
   }
 };
@@ -42,20 +44,20 @@ const customBreakpoints = deepMerge(grommet, {
   }
 });
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Grommet theme={{ ...theme, ...customBreakpoints }} full>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={MainContent} />
-          <Route path="/product/:productID" component={ProductPage} />
-          <Route path="/CartPage" component={CartPage} />
-        </Switch>
-        <Footer />
-      </Grommet>
-    </BrowserRouter>
-  );
+export default class App extends React.Component<Props> {
+  render() {
+    return (
+      <BrowserRouter>
+        <Grommet theme={{ ...theme, ...customBreakpoints }} full>
+          <Header />
+          <Switch>
+            <Route path="/" exact component={MainContent} />
+            <Route path="/CartPage" component={CartPage} />
+            <Route path="/ProductPage" component={ProductPage} />
+          </Switch>
+          <Footer />
+        </Grommet>
+      </BrowserRouter>
+    );
+  }
 }
-
-export default App;
