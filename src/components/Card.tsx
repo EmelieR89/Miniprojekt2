@@ -6,9 +6,10 @@ import {
   Button,
   ResponsiveContext
 } from "grommet";
-import { Cart, Favorite, Link } from "grommet-icons";
+import { Cart, Favorite } from "grommet-icons";
 import { AppEvent } from "./ProductData";
 import { CartContext } from "./CartContext";
+import {Link} from "react-router-dom"
 
 interface Props {
   event: AppEvent;
@@ -70,7 +71,7 @@ export const Card = (props: Props) => {
               // onClick={() => addToCart(item)//  add to cart
               color="blue"
             />
-            <Link to="/ProductPage/:id">
+            <Link to={"ProductPage/" + props.event.id}>
               <Button label="tryck" size="small" color="#8c7b75" />
             </Link>
           </div>
