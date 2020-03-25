@@ -12,6 +12,7 @@ export default class ProductPage extends Component<Props> {
     super(props);
   }
 
+
   render() {
     console.log(this.props.event + " propsen");
     
