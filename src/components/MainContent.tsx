@@ -5,7 +5,7 @@ import { productData } from "./ProductData";
 
 interface Props {}
 
-export default class MainContent extends React.Component<Props> {
+export default class MainContent extends Component<Props> {
   constructor(props: Props) {
     super(props);
   }
@@ -49,14 +49,14 @@ export default class MainContent extends React.Component<Props> {
                   ]
             }
           >
-            {productData.map(event => (
+            {productData.map(product => (
               <Box
-                gridArea={event.id}
+                gridArea={product.id}
                 background="light-2"
                 elevation="medium"
-                key={event.id}
+                key={product.id}
               >
-                <Card event={event} />
+                <Card product={product} />
               </Box>
             ))}
           </Grid>
