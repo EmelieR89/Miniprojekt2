@@ -38,7 +38,7 @@ export default class Header extends React.Component<Props> {
           />
 
           <Heading level="2" style={styleHeading}>
-            <img src="./KerstinLogga.PNG" alt="logo" style={imgStyle} />
+            <img src="../KerstinLogga.PNG" alt="logo" style={imgStyle} />
           </Heading>
         </div>
         <Nav direction="row" background="#d7ccc8" pad="medium">
