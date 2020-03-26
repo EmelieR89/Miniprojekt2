@@ -13,11 +13,10 @@ export default class Header extends React.Component<Props> {
   render() {
     return (
       <Box
-        tag="header"
         direction="row"
         align="center"
         justify="between"
-        background="#d7ccc8"
+        background="header"
         pad={{ left: "medium", right: "small", vertical: "small" }}
         elevation="medium"
         // style={{ zIndex: "1" }}
@@ -29,7 +28,7 @@ export default class Header extends React.Component<Props> {
             plain
             dropAlign={{ top: "bottom", right: "right" }}
             dropContent={
-              <Box pad="large" background="light-2">
+              <Box pad="large" background="">
                 {/*             <Link to="/OmOss">Cart</Link>
                  */}
                 <Link to="/CartPage">Cart</Link>
@@ -37,20 +36,20 @@ export default class Header extends React.Component<Props> {
             }
           />
 
-          <Heading level="2" style={styleHeading}>
+          <Heading level="2" color="navbar" style={styleHeading}>
             <img src="./KerstinLogga.PNG" alt="logo" style={imgStyle} />
           </Heading>
         </div>
-        <Nav direction="row" background="#d7ccc8" pad="medium">
+        <Nav direction="row" background="navbar" pad="medium">
           <Link to="/">
-            <Anchor icon={<Home />} color="#8c7b75" />
+            <Anchor icon={<Home />} color="icons" />
           </Link>
           <Link to="/">
             {" "}
-            <Anchor icon={<Favorite />} color="#8c7b75" />{" "}
+            <Anchor icon={<Favorite />} color="icons" />{" "}
           </Link>
           <Link to="/CartPage">
-            <Anchor icon={<Cart />} color="#8c7b75" />
+            <Anchor icon={<Cart />} color="icons" />
           </Link>
         </Nav>
       </Box>
@@ -59,7 +58,6 @@ export default class Header extends React.Component<Props> {
 }
 
 const styleHeading: CSSProperties = {
-  color: "black",
   margin: "0 0 0 3rem"
 };
 

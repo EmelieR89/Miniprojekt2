@@ -25,12 +25,6 @@ export default class CartPage extends Component<Props, State> {
   
   }
 
-  PostNordRadioButton = () => {
-
-  }
-
-
-
   render() {
     const { selected } = this.state;
     if(this.state.isSubmitted === true) {
@@ -54,9 +48,9 @@ export default class CartPage extends Component<Props, State> {
     } else {
       
       return(
-        <Box align={"center"} responsive={true} fill={true} style={FormStyle}>
+        <Box align="center" responsive={true} fill={true} style={FormStyle}>
            <Form onSubmit={this.handleSubmit}>
-        <FormField name="name" label="Namn" required={true} />
+        <FormField name="name" label="Namn" required={true}/>
         <FormField name="address" label="Adress" required={true}/>
         <FormField name="telefonnummer" label="Telefonnummer" />
         <FormField name="mail" label="Mail" required={true}/>
@@ -66,7 +60,7 @@ export default class CartPage extends Component<Props, State> {
           component={Select}
           options={["Sverige", "Norge", "Finland"]}
         />
-        <Button type="submit" label="Submit" primary={true} />
+        <Button type="submit" label="Submit" primary={true} color="buttons"/>
       </Form>
         </Box>
 
