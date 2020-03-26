@@ -20,19 +20,19 @@ export default class MainContent extends React.Component<Props> {
             margin="2rem"
             rows={
               size === "xsmall"
-                ? ["20rem", "20rem", "20rem", "20rem"]
+                ? ["15rem", "15rem", "15rem", "15rem"]
                 : size === "small"
                 ? ["small", "small"]
                 : ["medium", "medium"]
             }
             columns={
               size === "xsmall"
-                ? ["20rem"]
+                ? ["15rem"]
                 : size === "small"
                 ? ["small", "small"]
                 : ["medium", "medium"]
             }
-            gap={size === "xsmall" ? "small" : "large"}
+            gap="large"
             areas={
               size === "xsmall"
                 ? [
