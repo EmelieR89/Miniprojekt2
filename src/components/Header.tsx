@@ -26,7 +26,7 @@ export default class Header extends React.Component<Props> {
             direction="row"
             align="center"
             justify="between"
-            background="#d7ccc8"
+            background="header"
             pad={{ left: "medium", right: "small", vertical: "small" }}
             elevation="medium"
             {...this.props}
@@ -56,16 +56,16 @@ export default class Header extends React.Component<Props> {
               </Link>
             </div>
             {size !== "xsmall" && (
-              <Nav direction="row" background="#d7ccc8" pad="medium">
+              <Nav direction="row" background="navbar" pad="medium">
                 <Link to="/">
-                  <Button icon={<Home />} color="#8c7b75" />
+                  <Button icon={<Home />} color="icon" />
                 </Link>
                 <Link to="/">
                   {" "}
-                  <Button icon={<Favorite />} color="#8c7b75" />{" "}
+                  <Button icon={<Favorite />} color="icon" />{" "}
                 </Link>
                 <Link to="/CartPage">
-                  <Button icon={<Cart />} color="#8c7b75" />
+                  <Button icon={<Cart />} color="icon" />
                 </Link>
               </Nav>
             )}

@@ -11,7 +11,7 @@ export default class Footer extends Component<Props> {
 
   render() {
     return (
-      <AFooter background="#d7ccc8" pad="medium" justify="center">
+      <AFooter background="footer" pad="medium" justify="center">
         <Anchor label={<Facebook />} />
         <Anchor label={<Instagram />} />
         <Anchor label={<Mail />} />
