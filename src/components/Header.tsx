@@ -1,6 +1,13 @@
 import React, { CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { Box, Heading, Anchor, Nav, DropButton } from "grommet";
+import {
+  Box,
+  Nav,
+  DropButton,
+  ResponsiveContext,
+  Image,
+  Button
+} from "grommet";
 import { Menu as Hamburger, Home, Cart, Favorite } from "grommet-icons";
 
 interface Props {}
@@ -12,57 +19,60 @@ export default class Header extends React.Component<Props> {
 
   render() {
     return (
-      <Box
-        direction="row"
-        align="center"
-        justify="between"
-        background="header"
-        pad={{ left: "medium", right: "small", vertical: "small" }}
-        elevation="medium"
-        // style={{ zIndex: "1" }}
-        {...this.props}
-      >
-        <div style={firstPartOfHeader}>
-          <DropButton
-            label={<Hamburger />}
-            plain
-            dropAlign={{ top: "bottom", right: "right" }}
-            dropContent={
-              <Box pad="large" background="">
-                {/*             <Link to="/OmOss">Cart</Link>
-                 */}
-                <Link to="/CartPage">Cart</Link>
-              </Box>
-            }
-          />
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Box
+            tag="header"
+            direction="row"
+            align="center"
+            justify="between"
+            background="header"
+            pad={{ left: "medium", right: "small", vertical: "small" }}
+            elevation="medium"
+            {...this.props}
+          >
+            <div style={firstPartOfHeader}>
+              <DropButton
+                label={<Hamburger />}
+                plain
+                dropAlign={{ top: "bottom", right: "right" }}
+                dropContent={
+                  <Box pad="large" background="light-2">
+                    <Link to="/OmOss">Om oss</Link>
+                    <Link to="/Gillade">Gillade</Link>
+                    <Link to="/CartPage">Cart</Link>
+                  </Box>
+                }
+              />
 
-          <Heading level="2" color="navbar" style={styleHeading}>
-            <img src="./KerstinLogga.PNG" alt="logo" style={imgStyle} />
-          </Heading>
-        </div>
-        <Nav direction="row" background="navbar" pad="medium">
-          <Link to="/">
-            <Anchor icon={<Home />} color="icons" />
-          </Link>
-          <Link to="/">
-            {" "}
-            <Anchor icon={<Favorite />} color="icons" />{" "}
-          </Link>
-          <Link to="/CartPage">
-            <Anchor icon={<Cart />} color="icons" />
-          </Link>
-        </Nav>
-      </Box>
+              <Link to="/">
+                <Image src="./KerstinLogga.PNG" style={imgStyle} />
+              </Link>
+            </div>
+            {size !== "xsmall" && (
+              <Nav direction="row" background="navbar" pad="medium">
+                <Link to="/">
+                  <Button icon={<Home />} color="icon" />
+                </Link>
+                <Link to="/">
+                  {" "}
+                  <Button icon={<Favorite />} color="icon" />{" "}
+                </Link>
+                <Link to="/CartPage">
+                  <Button icon={<Cart />} color="icon" />
+                </Link>
+              </Nav>
+            )}
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
     );
   }
 }
 
-const styleHeading: CSSProperties = {
-  margin: "0 0 0 3rem"
-};
-
 const imgStyle: CSSProperties = {
-  height: "8rem"
+  height: "8rem",
+  marginLeft: "2rem"
 };
 
 const firstPartOfHeader: CSSProperties = {

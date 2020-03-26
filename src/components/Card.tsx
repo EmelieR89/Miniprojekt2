@@ -12,7 +12,7 @@ import { CartContext } from "./CartContext";
 import {Link} from "react-router-dom"
 
 interface Props {
-  event: AppEvent;
+  product: AppEvent;
 }
 
 export const Card = (props: Props) => {
@@ -23,8 +23,9 @@ export const Card = (props: Props) => {
       {size => (
         <Box direction="column" justify="center" align="center">
           <Box>
-            <Picture fit="cover" src={props.event.mainImg} />
+            <Picture fit="cover" src={props.product.mainImg} />
             <Paragraph
+            alignSelf="center"
               margin={
                 size === "xsmall" ? "2px" : size === "small" ? "5px" : "10px"
               }
@@ -37,7 +38,7 @@ export const Card = (props: Props) => {
                   : "medium"
               }
             >
-              {props.event.productText}
+              {props.product.productTitle}
             </Paragraph>
           </Box>
           <div style={buttonStyles}>
@@ -71,8 +72,8 @@ export const Card = (props: Props) => {
               // onClick={() => addToCart(item)//  add to cart
               color="blue"
             />
-            <Link to={"ProductPage/" + props.event.id}>
-              <Button label="tryck" size="small" color="#8c7b75" />
+            <Link to={"ProductPage/" + props.product.id}>
+              <Button label="Läs mer" size="small" color="#8c7b75" margin="0.3rem"/>
             </Link>
           </div>
         </Box>
