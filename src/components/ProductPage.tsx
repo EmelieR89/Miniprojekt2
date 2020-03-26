@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Box, Image as Picture } from "grommet";
 import { productData, AppEvent } from "./ProductData";
 import Image from "../assets/ceramics1.jpg"
+import { RouteComponentProps } from "react-router-dom";
 
-interface Props {
-  event: AppEvent;
+interface Props extends RouteComponentProps<{id: string}>{
+
 }
 
 export default class ProductPage extends Component<Props> {
@@ -13,11 +14,19 @@ export default class ProductPage extends Component<Props> {
   }
 
   render() {
-    console.log(this.props.event + " propsen");
+    console.log(this.props.match.params.id);
     
+    const product = productData.find((product) => product.id == this.props.match.params.id)
+
+    if(!product){
+      return(
+        <h1>produkten finns inte!!!!!!!!</h1>
+      )
+    }
     return (
       <Box>
-        <Picture src={Image} fit="cover"/>
+
+        <Picture src={product.mainImg} fit="cover"/>
       </Box>
     );
   }

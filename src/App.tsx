@@ -49,10 +49,9 @@ function App() {
       <CartProvider>
         <Grommet theme={{ ...theme, ...customBreakpoints }} full>
           <Header />
-
           <Switch>
             <Route path="/" exact component={MainContent} />
-            <Route path="/product/:productID" component={ProductPage} />
+            <Route path="/ProductPage/:id" component={ProductPage} />
             <Route path="/CartPage" component={CartPage} />
           </Switch>
           <Footer />
