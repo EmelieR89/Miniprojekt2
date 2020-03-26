@@ -8,6 +8,7 @@ import MainContent from "./components/MainContent";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
 import { CartProvider } from "../src/components/CartContext";
+import OmOss from "./components/OmOss";
 
 const theme =  {
   global: {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" exact component={MainContent} />
             <Route path="/ProductPage/:id" component={ProductPage} />
             <Route path="/CartPage" component={CartPage} />
+            <Route path="/OmOss" component={OmOss} />
           </Switch>
           <Footer />
         </Grommet>

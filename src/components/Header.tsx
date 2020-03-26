@@ -38,9 +38,15 @@ export default class Header extends React.Component<Props> {
                 dropAlign={{ top: "bottom", right: "right" }}
                 dropContent={
                   <Box pad="large" background="light-2">
-                    <Link to="/OmOss">Om oss</Link>
-                    <Link to="/Gillade">Gillade</Link>
-                    <Link to="/CartPage">Cart</Link>
+                    <Link to="/OmOss" style={linkStyle}>
+                      Om oss
+                    </Link>
+                    <Link to="/Gillade" style={linkStyle}>
+                      Gillade
+                    </Link>
+                    <Link to="/CartPage" style={linkStyle}>
+                      Cart
+                    </Link>
                   </Box>
                 }
               />
@@ -77,4 +83,10 @@ const imgStyle: CSSProperties = {
 
 const firstPartOfHeader: CSSProperties = {
   display: "flex"
+};
+
+const linkStyle: CSSProperties = {
+  margin: "1rem",
+  textDecoration: "None",
+  color: "black"
 };
