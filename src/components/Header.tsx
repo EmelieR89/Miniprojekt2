@@ -45,9 +45,9 @@ export default class Header extends React.Component<Props> {
                 }
               />
 
-              <Box>
+              <Link to="/">
                 <Image src="./KerstinLogga.PNG" style={imgStyle} />
-              </Box>
+              </Link>
             </div>
             {size !== "xsmall" && (
               <Nav direction="row" background="#d7ccc8" pad="medium">
