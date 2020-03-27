@@ -4,39 +4,44 @@ import Image3 from "../assets/ceramics3.jpg";
 import Image4 from "../assets/ceramics4.jpg";
 
 
-export interface AppEvent {
+export interface Product {
   mainImg: string;
-  productTitle: string;
-  productText: string;
+  title: string;
+  description: string;
   id: string;
+  price: string
 }
 
-export const productData: AppEvent[] = [
+export const productData: Product[] = [
   {
     mainImg: Image,
-    productTitle: "Karaff Eva",
-    productText: "En snygg och stilren karaff som passar bra till alla drycker.",
-    id: "box1"
+    title: "Karaff Eva",
+    description: "En snygg och stilren karaff som passar bra till alla drycker.",
+    id: "box1",
+    price: "250:-"
   },
 
   {
     mainImg: Image2,
-    productTitle: "Skål Märta",
-    productText: "Liten skål som passar perfekt till frukost eller tillbehör. Ø ca 12cm. ",
-    id: "box2"
+    title: "Skål Märta",
+    description: "Liten skål som passar perfekt till frukost eller tillbehör. Ø ca 12cm. ",
+    id: "box2",
+    price: "200:-"
   },
 
   {
     mainImg: Image3,
-    productTitle: "Skål Boel",
-    productText: "En lite större skål som passar lika bra till frukosten som till soppan. Ø ca 24cm.",
-    id: "box3"
+    title: "Skål Boel",
+    description: "En lite större skål som passar lika bra till frukosten som till soppan. Ø ca 24cm.",
+    id: "box3",
+    price: "300:-"
   },
 
   {
     mainImg: Image4,
-    productTitle: "Kopp Ingrid",
-    productText: "Den perfekta kaffekoppen som är bekväm att hålla i och som håller värmen bra. ",
-    id: "box4"
+    title: "Kopp Ingrid",
+    description: "Den perfekta kaffekoppen som är bekväm att hålla i och som håller värmen bra. ",
+    id: "box4",
+    price: "120:-"
   }
 ];
