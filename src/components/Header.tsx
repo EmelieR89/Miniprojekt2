@@ -9,6 +9,7 @@ import {
   Button
 } from "grommet";
 import { Menu as Hamburger, Home, Cart, Favorite } from "grommet-icons";
+import { Animated } from "react-animated-css";
 
 interface Props {}
 
@@ -65,7 +66,7 @@ export default class Header extends React.Component<Props> {
                   <Button icon={<Favorite />} color="icon" />{" "}
                 </Link>
                 <Link to="/CartPage">
-                  <Button icon={<Cart />} color="icon" />
+                    <Button icon={<Cart />} color="icon" />
                 </Link>
               </Nav>
             )}

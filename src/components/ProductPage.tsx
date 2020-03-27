@@ -1,20 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Box, Image as Picture, Grid, Button } from "grommet";
-import { productData } from "./ProductData";
+import { productData, Product } from "./ProductData";
 import { RouteComponentProps } from "react-router-dom";
 import { Cart } from "grommet-icons";
+import { CartContext } from "./CartContext";
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+interface Props extends RouteComponentProps<{ id: string }> {
+  product: Product;
 
-export default class ProductPage extends Component<Props> {
+}
+
+interface State {}
+
+export default class ProductPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
   }
 
-
   render() {
-    console.log(this.props.match.params.id);
-
     const product = productData.find(
       product => product.id == this.props.match.params.id
     );
@@ -26,6 +29,8 @@ export default class ProductPage extends Component<Props> {
         </Box>
       );
     }
+/*     const { addToCart } = useContext(CartContext); Gör om så det ej är en hook
+ */
     return (
       <Grid
         responsive
@@ -42,13 +47,14 @@ export default class ProductPage extends Component<Props> {
         ]}
       >
         <Box justify="center" gridArea="infoText">
-          {product.productText}
+          {product.description}
         </Box>
 
         <Box gridArea="biggerPicture">
           <Picture src={product.mainImg} fit="contain" />
           <Button
-            alignSelf="center"
+/*             onClick={() => addToCart(this.props.product)} denna kommer funka när hooken ej är en hook
+ */            alignSelf="center"
             label="Köp"
             color="light-2"
             margin="small"
