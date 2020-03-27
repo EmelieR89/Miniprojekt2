@@ -40,7 +40,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={MainContent} />
             <Route path="/ProductPage/:id" component={ProductPage} />
-            <Route path="/CartPage" component={CartPage} />
+            <Route path="/CartPage/" component={CartPage} />
             <Route path="/OmOss" component={OmOss} />
           </Switch>
           <Footer />
