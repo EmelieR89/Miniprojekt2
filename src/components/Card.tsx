@@ -7,12 +7,12 @@ import {
   ResponsiveContext
 } from "grommet";
 import { Cart, Favorite } from "grommet-icons";
-import { Product } from "./ProductData";
+import { AppEvent } from "./ProductData";
 import { CartContext } from "./CartContext";
 import {Link} from "react-router-dom"
 
 interface Props {
-  product: Product;
+  product: AppEvent;
 }
 
 export const Card = (props: Props) => {
@@ -38,7 +38,7 @@ export const Card = (props: Props) => {
                   : "medium"
               }
             >
-              {props.product.title}
+              {props.product.productTitle}
             </Paragraph>
           </Box>
           <div style={buttonStyles}>
@@ -69,7 +69,7 @@ export const Card = (props: Props) => {
                   }
                 />
               }
-              onClick={() => addToCart(props.product)}
+              // onClick={() => addToCart(item)//  add to cart
               color="blue"
             />
             <Link to={"ProductPage/" + props.product.id}>

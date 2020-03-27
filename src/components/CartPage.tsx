@@ -1,67 +1,34 @@
-import React, { Component, CSSProperties, useContext } from "react";
+import React, { Component, CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import {
-  Box,
-  Form,
-  FormField,
-  Button,
-  Select,
-  RadioButton,
-  Text
-} from "grommet";
-import { Product, productData } from "./ProductData";
-import { CartContext } from "./CartContext";
+import { Box, Form, FormField, Button, Select, RadioButton, Text } from "grommet";
+import { AppEvent } from "./ProductData";
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+interface Props extends RouteComponentProps {}
 
 interface State {
-  isSubmitted: boolean;
-  selected: {};
+  isSubmitted: boolean
+  selected: {}
 }
 
 export default class CartPage extends Component<Props, State> {
   constructor(props: Props) {
-    super(props);
+    super(props)
     this.state = {
       isSubmitted: false,
-      selected: {}
-    };
+      selected: {},
+    }
+    }
+
+  handleSubmit = ()  => {
+    this.setState({ isSubmitted: true })
+    console.log("hejhej handlesubmit")
+  
   }
 
-  handleSubmit = () => {
-    this.setState({ isSubmitted: true });
-  };
-
   render() {
-    return (
-      <CartContext.Consumer>
-        {cartState => (
-          <>
-            {cartState.cart.map(item => (
-              <Box
-              justify="center" 
-              align="center"
-              width="small"
-              basis="small"
-
-              >
-                {item.product.title}
-                <img src={item.product.mainImg}/>
-                {item.count}
-              </Box>
-            ))}
-          </>
-        )}
-      </CartContext.Consumer>
-    );
-
-    /* 
     const { selected } = this.state;
     if(this.state.isSubmitted === true) {
       return (
-
-        <Box>
-
         <Box align={"center"} responsive={true} fill={true} style={FormStyle}>
           <Text>Här kan det stå lite info om vilket fraktsätt man vill välja. </Text>
           <Box align='start'>
@@ -76,8 +43,7 @@ export default class CartPage extends Component<Props, State> {
             </Box>
           ))}
         </Box>
-      </Box>        </Box>
-
+      </Box>
       )
     } else {
       
@@ -97,9 +63,9 @@ export default class CartPage extends Component<Props, State> {
         <Button type="submit" label="Submit" primary={true} color="buttons"/>
       </Form>
         </Box>
-  
+
       )
-    }  */
+    }
   }
 }
 
@@ -108,11 +74,13 @@ const fraktButtons: CSSProperties = {
   justifyItems: "center",
   marginTop: "6rem",
   alignItems: "center"
-};
+}
 
 const FormStyle: CSSProperties = {
   alignItems: "center",
   display: "flex",
   justifyItems: "center",
   marginTop: "6rem"
-};
+}
+
+
