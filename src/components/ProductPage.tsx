@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { Box, Image as Picture, Grid, Button } from "grommet";
-import { productData } from "./ProductData";
+import { productData, Product } from "./ProductData";
 import { RouteComponentProps } from "react-router-dom";
 import { Cart } from "grommet-icons";
+import { CartContext } from "./CartContext";
 
-interface Props extends RouteComponentProps<{ id: string }> {}
-
-export default class ProductPage extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+interface Props extends RouteComponentProps<{ id: string }> {
+  product: Product
+}
 
 
-  render() {
-    console.log(this.props.match.params.id);
+export function ProductPage(props: Props) {
 
     const product = productData.find(
-      product => product.id == this.props.match.params.id
+      product => product.id === props.match.params.id
     );
+
+    const { addToCart } = useContext(CartContext);
+
 
     if (!product) {
       return (
@@ -42,10 +42,12 @@ export default class ProductPage extends Component<Props> {
         ]}
       >
         <Box justify="center" gridArea="infoText">
+          {product.title} <br/>
           {product.description}
         </Box>
 
         <Box gridArea="biggerPicture">
+
           <Picture src={product.mainImg} fit="contain" />
           <Button
             alignSelf="center"
@@ -53,9 +55,12 @@ export default class ProductPage extends Component<Props> {
             color="light-2"
             margin="small"
             icon={<Cart />}
+            onClick={() => addToCart(product)}
+
           />
         </Box>
       </Grid>
-    );
+    ); 
   }
-}
+
+
