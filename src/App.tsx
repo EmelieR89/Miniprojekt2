@@ -5,8 +5,8 @@ import Header from "./components/Header";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer";
 import MainContent from "./components/MainContent";
-import ProductPage from "./components/ProductPage";
 import { CartPage } from "./components/CartPage";
+import { ProductPage } from "./components/ProductPage";
 import { CartProvider } from "../src/components/CartContext";
 import OmOss from "./components/OmOss";
 
