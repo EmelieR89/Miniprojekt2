@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Product } from "./ProductData";
-import { Button } from "grommet";
 
 export const CartContext = React.createContext<Cart>({
   cart: [],
@@ -43,8 +42,6 @@ export const CartProvider = (props: Props) => {
   };
 
   const removeFromCart = (product: Product) => {
-    console.log("Nu är vi i remove : " + product.id);
-    // const removedCart: CartItem[] = Object.assign([], cart);
     let removedCart: CartItem[] = [...cart];
     for (const item of removedCart) {
       if (item.product.id === product.id && item.count > 1) {
@@ -53,8 +50,13 @@ export const CartProvider = (props: Props) => {
 
         return;
       }
+      if (item.product.id === product.id && item.count === 1) {
+        const filteredList = removedCart.filter(
+          currentProduct => currentProduct.product.id !== item.product.id
+        );
+        setCart(filteredList);
+      }
     }
-    // setCart([...cart, { product, count: -1 }]);
   };
 
   return (
