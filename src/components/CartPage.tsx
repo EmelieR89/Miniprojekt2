@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties, useContext } from "react";
+import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import {
   Box,
@@ -7,13 +7,15 @@ import {
   Button,
   Select,
   RadioButton,
-  Text
+  Text,
+  Image,
+  Paragraph
 } from "grommet";
 import { Product, productData } from "./ProductData";
 import { CartContext } from "./CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {
-  product: Product
+  product: Product;
 }
 
 interface State {
@@ -21,43 +23,57 @@ interface State {
   selected: {};
 }
 
-export default class CartPage extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isSubmitted: false,
-      selected: {}
-    };
-  }
+// export default class CartPage extends Component<Props, State> {
+//   constructor(props: Props) {
+//     super(props);
+//     this.state = {
+//       isSubmitted: false,
+//       selected: {}
+//     };
+//   }
 
-  handleSubmit = () => {
-    this.setState({ isSubmitted: true });
+export const CartPage = (props: Props) => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selected, setSelected] = useState({});
+  const { removeFromCart } = useContext(CartContext);
+
+  const handleSubmit = () => {
+    setIsSubmitted(!isSubmitted);
+    // this.setState({ isSubmitted: true });
   };
+  // console.log("Props fmor chartPage: " + props.product.id);
 
-  render() {
-    return (
-      <CartContext.Consumer>
-        {cartState => (
-          <>
-            {cartState.cart.map(item => (
-              <Box
-              justify="center" 
-              align="center"
+  return (
+    <CartContext.Consumer>
+      {cartState => (
+        <>
+          {cartState.cart.map(item => (
+            <Box
               width="small"
-              basis="small"
+              height="small"
+              margin="small"
+              elevation="medium"
+              responsive
+            >
+              <Text>{item.product.title}</Text>
+              <Image src={item.product.mainImg} fit="cover" />
+              <div style={productBox}>
+                <Text>Antal: {item.count}</Text>
+                <Button
+                  label="Remove"
+                  onClick={() => removeFromCart(item.product)}
+                  color="buttons"
+                  size="small"
+                />
+              </div>
+            </Box>
+          ))}
+        </>
+      )}
+    </CartContext.Consumer>
+  );
 
-              >
-                {item.product.title}
-                <img src={item.product.mainImg}/>
-                {item.count}
-              </Box>
-            ))}
-          </>
-        )}
-      </CartContext.Consumer>
-    );
-
-    /* 
+  /* 
     const { selected } = this.state;
     if(this.state.isSubmitted === true) {
       return (
@@ -102,8 +118,7 @@ export default class CartPage extends Component<Props, State> {
   
       )
     }  */
-  }
-}
+};
 
 const fraktButtons: CSSProperties = {
   display: "flex",
@@ -117,4 +132,10 @@ const FormStyle: CSSProperties = {
   display: "flex",
   justifyItems: "center",
   marginTop: "6rem"
+};
+
+const productBox: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-around",
+  margin: "0.2rem"
 };
