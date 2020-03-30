@@ -13,7 +13,6 @@ import { Product, productData } from "./ProductData";
 import { CartContext } from "./CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {
-  product: Product
 }
 
 interface State {
