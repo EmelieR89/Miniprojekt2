@@ -1,3 +1,20 @@
+## Miniprojekt2 - Kerstins Keramik
+
+Ett påhittat projekt som vi skapade för att arbeta med React och designsystem. Sidan är skapade med komponenter, och navigeringen mellan
+dessa sker med Routes och Links. På startsidan ser du de produkter som är till försäljning. Du kan redan där lägga till produkten i
+kundvagnen, eller trycka på 'läs mer'. Du kommer då in på en produktsida där du kan få ytterligare information om produkten. Där kan du
+sedan lägga till produkten i kundvagnen om du så behagar. I hamburgemenyn kan du välja att läsa mer om Kerstins Keramik under 'Om oss'.
+Du kommer då till en sida med information om företaget, och du kan se flera bilder genom att trycka dig framåt på bildkarusellen. Alla
+bilder på sidan är hämtade från unsplash. När du har valt de produkter du vill, kan du trycka dig vidare till kundvagnen, antingen via 
+hamburgemenyn eller direkt via ikonen uppe i högra hörnet. Du kommer då till utcheckningen. Där kan du se vilka produkter du har valt,
+justera om du vill ta bort eller lägga till någon, och sedan fylla i din information, betalningssätt och fraktsätt. 
+
+Vi har använt oss av designsystemet Grommet:
+https://v2.grommet.io/
+
+Länk till repo:
+https://github.com/EmelieR89/Miniprojekt2
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
