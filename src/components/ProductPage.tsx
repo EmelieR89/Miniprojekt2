@@ -42,7 +42,7 @@ export default class ProductPage extends Component<Props> {
         ]}
       >
         <Box justify="center" gridArea="infoText">
-          {product.productText}
+          {product.description}
         </Box>
 
         <Box gridArea="biggerPicture">
