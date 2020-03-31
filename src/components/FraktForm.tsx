@@ -1,6 +1,7 @@
-import {Grommet, FormField, Box, Form, Button, RadioButton, Text, Select, Image as Picture, Calendar} from 'grommet'
+import {Grommet, FormField, Box, Form, Button, RadioButton, Text, Select, Image as Picture, Calendar, TextInput} from 'grommet'
 import React, { CSSProperties } from 'react'
 import {FraktData} from './FraktData'
+import { StatusGood } from 'grommet-icons'
 
 interface Props {
     FraktData: FraktData 
@@ -9,7 +10,6 @@ interface Props {
 interface State {
     isSubmitted: boolean;
     selected: {};
-    date: string
 
 }
 
@@ -19,26 +19,39 @@ export default class FraktForm extends React.Component<Props, State>{
         this.state = {
             isSubmitted: false,
             selected: {},
-            date: new Date().toLocaleString()
         }
     }
     handleSubmit = () => {
         this.setState({ isSubmitted: true });
       };
 
+    leveransDatum = (days: number) => {
+        const date = new Date()
+        date.setDate(date.getDate() + days)
+        return date.toLocaleDateString()
+    }
+
+    
 
     render(){
         const { selected } = this.state;
         if(this.state.isSubmitted === true) {
         return(
-            <Box responsive={true} fill={true}
-            direction="column"
-            align="center">
+            <Box 
+            responsive={true} 
+            fill={true}
+            justify="center"
+            alignContent="center"
+            wrap={true}
+            >
 
-            <Text>Var vänlig välj fraktsätt </Text>
+            <Text size="large" alignSelf="center">Var vänlig välj fraktsätt</Text>
             {FraktData.map(Frakt => (
-              <Box key={Frakt.namn} margin={{ vertical: 'medium'}} responsive={true} style={FraktDataStyle}>
-
+              <Box key={Frakt.namn} 
+              margin={{ vertical: 'medium'}} 
+              responsive={true} 
+              
+              >
                  <RadioButton
                     name= "props"
                     checked={selected === Frakt.namn}
@@ -46,44 +59,61 @@ export default class FraktForm extends React.Component<Props, State>{
                     onChange={() => this.setState({ selected: Frakt.namn })}
                 >
                  </RadioButton>
-                 
-                 <Text>{Frakt.beskrivning}</Text>
+
+                <Box direction="row" gap="small">
+                    <Text>{Frakt.beskrivning}</Text>
+                </Box>
                 
-                {/* <Picture style={fraktBilder} src={Frakt.img}
-                    fit="cover"
-                ></Picture> */}
-
-                <Box direction="row" gap="small">{Frakt.pris}
-                    <Text>Kronor</Text>
+                <Box direction="row" gap="small">
+                    <Text>Pris: {Frakt.pris}</Text>
                 </Box>
-                <Box direction="row" gap="small">{Frakt.timmar} 
-                    <Text>timmar</Text>
+                <Box direction="row" gap="small">
+                    <Text>Leveransdatum: {this.leveransDatum(Frakt.days)}</Text>
                 </Box>
-                <Box direction="row" gap="small">{Frakt.DatumTimmar}
-
-                </Box>
+                
               </Box>
+             
             ))
+            
             }
+             <Button type="submit" label="Submit" primary={true} color="buttons"/>
           </Box>      
         )
         
     } else {
         return(
-        <Box align="center" responsive={true} fill={true} style={FormStyle}>
-            <Form onSubmit={this.handleSubmit}>
-                <FormField name="name" label="Namn" required={true}/>
-                <FormField name="address" label="Adress" required={true}/>
-                <FormField name="telefonnummer" label="Telefonnummer" />
-                <FormField name="mail" label="Mail" required={true}/>
+        <Box align="center" responsive={true} fill={true} justify="center">
+            <Form validate="blur" onSubmit={this.handleSubmit}>
+                
+                <FormField 
+                name="name" label="Namn" required={true} type="text"
+                validate={{ regexp: /^[a-zA-Z]/, message: "Använd bokstäver" }}
+                />
+
+                <FormField name="address" label="Adress" required={true}
+                    validate={{ regexp: /^[a-zA-Z]/, message: "Använd bokstäver" }}
+                />
+
+                <FormField name="postnummer" label="Postnummer" required={true}
+                    validate={{ regexp: /^[0-9]{0,9}$/, message: "Använd siffror mellan 0-9" }}
+                />   
+
+                <FormField 
+                name="telefonnummer" label="Telefonnummer" required={true} 
+                validate={{ regexp: /^[0-9]{0,9}$/, message: "Använd siffror mellan 0-9" }}
+                />
+
+                <FormField name="mail" label="Mail" type="email" required={true}/>
+                
                 <FormField
                 label="Land"
                 name="select"
                 component={Select}
                 options={["Sverige", "Norge", "Finland"]}
                 />  
-        <Button type="submit" label="Submit" primary={true} color="buttons"/>
-    </Form>
+            <Button fill="horizontal" type="submit" label="Submit" primary={true} color="buttons"/>
+        </Form>
+    
 </Box>
         )
     }
@@ -91,22 +121,22 @@ export default class FraktForm extends React.Component<Props, State>{
 
 }
 
-const FormStyle: CSSProperties = {
-    display: "flex",
-    marginTop: "6rem"
-  };
+// const FormStyle: CSSProperties = {
+//     display: "flex",
+//     marginTop: "6rem"
+//   };
 
-  const fraktButtons: CSSProperties = {
-    display: "flex",
-    justifyItems: "center",
-    marginTop: "6rem",
-    alignItems: "center"
-  };
+//   const fraktButtons: CSSProperties = {
+//     display: "flex",
+//     justifyItems: "center",
+//     marginTop: "6rem",
+//     alignItems: "center"
+//   };
   
 // const fraktBilder: CSSProperties = {
 //     width:"10%",
 // }
 
-const FraktDataStyle: CSSProperties = {
+// const FraktDataStyle: CSSProperties = {
 
-}
+// }

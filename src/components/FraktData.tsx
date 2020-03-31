@@ -1,42 +1,49 @@
-import react from 'react'
 import Image1 from "../assets/Postnord.png" 
 import Image2 from "../assets/DHL.png"
-
+import React, { Component } from 'react';
 
 export interface FraktData {
     namn: string
     id: string
     pris: number 
-    timmar: number 
-    DatumTimmar: number
+    days: number 
     beskrivning: string
 }
 
-const date = new Date().getDate()
+// const datumForLeverans = () => {
+    
+//     // let dd = String(today.getDate()).padStart(2, '0');
+//     // let mm = String(today.getMonth() + 1).padStart(2, '0');
+//     // let yyyy = today.getFullYear()
+    
+//     // today.toLocaleTimeString(dd + mm + yyyy)
+//     return(today)
+// }
 
 export const FraktData: FraktData [] = [
     {
-        DatumTimmar: date + 2,
         namn: 'Postnord',
         id: 'frakt1',
         pris: 39,
-        timmar: 48,
-        beskrivning: 'Postnord hämtar ditt paket och leverar till närmsta uthämtningsställe.',
+        days: 2,
+        beskrivning: 'Postnord hämtar ditt paket och leverar till ditt närmsta utlämningsställe.',
     },
     {
-        DatumTimmar: date + 1,
         namn: 'DHL',
         id: 'frakt2',
         pris: 59,
-        timmar: 24,
-        beskrivning: 'Postnord hämtar ditt paket och leverar till närmsta uthämtningsställe.',
+        days: 1,
+        beskrivning: 'DHL hämtar ditt paket och leverar till ditt närmsta utlämningsställe.',
     },
     {
-        DatumTimmar: date + 1,
         namn: 'Hämta själv',
         id: 'frakt3',
         pris: 0,
-        timmar: 24,
-        beskrivning: 'Postnord hämtar ditt paket och leverar till närmsta uthämtningsställe.',
+        days: 1,
+        beskrivning: 'Du hämtar ditt paket i butiken på utgivet leveransdatum.',
     }
 ]
+
+
+
+
