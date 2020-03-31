@@ -12,12 +12,8 @@ import { Menu as Hamburger, Home, Cart, Favorite } from "grommet-icons";
 
 interface Props {}
 
-export default class Header extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+export function Header(props: Props) {  
 
-  render() {
     return (
       <ResponsiveContext.Consumer>
         {size => (
@@ -29,7 +25,7 @@ export default class Header extends React.Component<Props> {
             background="header"
             pad={{ left: "medium", right: "small", vertical: "small" }}
             elevation="medium"
-            {...this.props}
+            {...props}
           >
             <div style={firstPartOfHeader}>
               <DropButton
@@ -73,7 +69,6 @@ export default class Header extends React.Component<Props> {
         )}
       </ResponsiveContext.Consumer>
     );
-  }
 }
 
 const imgStyle: CSSProperties = {

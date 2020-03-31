@@ -1,7 +1,6 @@
 import React from "react";
 import { Grommet } from "grommet";
-import { deepMerge } from "grommet/utils";
-import Header from "./components/Header";
+import { Header } from "./components/Header";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer";
 import MainContent from "./components/MainContent";
