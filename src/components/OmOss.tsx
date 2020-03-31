@@ -16,11 +16,11 @@ export default class OmOss extends React.Component<Props> {
         <Box width="large" margin="1.5rem">
           <Paragraph responsive margin="medium" size="small" fill>
             Kerstins Keramik drivs av Kerstin Almkvist. Hon är utbildad
-            keramiker och har arbetat med detta vid sidan av sedan 2013, men
-            öppnade hon sin egna studio 2015 och har sedan dess arbetet med
-            detta på heltid. Studion ligger en bit utanför Skövde, där hon
-            skapar bruksföremål, så som koppar, fat, koppar och liknande. Alla
-            produkter är gjorda från grunden av henne.
+            keramiker och har arbetat med detta vid sidan av sedan 2008. I slutet av 2015
+            öppnade hon sin egna studio och har sedan dess arbetat med
+            keramik på heltid. I studion, som ligger en bit utanför Skövde,
+            skapar hon bruksföremål, så som koppar, fat, tallrikar och liknande. Alla
+            produkter är gjorda för hand.
           </Paragraph>
           <Box
             height="medium"

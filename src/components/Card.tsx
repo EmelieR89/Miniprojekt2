@@ -9,7 +9,8 @@ import {
 import { Cart, Favorite } from "grommet-icons";
 import { Product } from "./ProductData";
 import { CartContext } from "./CartContext";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import "../index.css";
 
 interface Props {
   product: Product;
@@ -18,6 +19,15 @@ interface Props {
 export const Card = (props: Props) => {
   const { addToCart } = useContext(CartContext);
 
+
+  function showCartMessage() {
+    const hej = document.getElementById("addToCartMessage");
+    hej!.className = "show";
+    setTimeout(function() {
+      hej!.className = hej!.className.replace("show", "");
+    }, 2000);
+  }
+
   return (
     <ResponsiveContext.Consumer>
       {size => (
@@ -25,7 +35,7 @@ export const Card = (props: Props) => {
           <Box>
             <Picture fit="cover" src={props.product.mainImg} />
             <Paragraph
-            alignSelf="center"
+              alignSelf="center"
               margin={
                 size === "xsmall" ? "2px" : size === "small" ? "5px" : "10px"
               }
@@ -69,12 +79,23 @@ export const Card = (props: Props) => {
                   }
                 />
               }
-              onClick={() => addToCart(props.product)}
+              onClick={() => {
+                addToCart(props.product);
+                showCartMessage();
+              }}
               color="blue"
             />
             <Link to={"ProductPage/" + props.product.id}>
-              <Button label="Läs mer" size="small" color="#8c7b75" margin="0.3rem"/>
+              <Button
+                label="Läs mer"
+                size="small"
+                color="#8c7b75"
+                margin="0.3rem"
+              />
             </Link>
+          </div>
+          <div id="addToCartMessage">
+            {props.product.title} har lagts till i kundvagnen
           </div>
         </Box>
       )}
