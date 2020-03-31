@@ -11,11 +11,21 @@ import OmOss from "./components/OmOss";
 
 const theme = {
   global: {
+    breakpoints: {
+      xsmall: {
+        value: 500
+      },
+      small: {
+        value: 900
+      }
+    },
+
     focus: {
       border: {
         color: "#d7ccc8"
       }
     },
+
     colors: {
       header: "#d7ccc8",
       footer: "#d7ccc8",
