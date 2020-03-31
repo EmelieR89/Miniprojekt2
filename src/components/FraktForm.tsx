@@ -1,18 +1,21 @@
-import {Grommet, FormField, Box, Form, Button, RadioButton, Text, Select, Image as Picture, Calendar, TextInput} from 'grommet'
+import {Grommet, 
+FormField, 
+Box, 
+Form, 
+Button, 
+RadioButton, 
+Text, 
+Select} from 'grommet'
 import React, { CSSProperties } from 'react'
 import {FraktData} from './FraktData'
-import { StatusGood } from 'grommet-icons'
-
 interface Props {
     FraktData: FraktData 
 }
-
 interface State {
     isSubmitted: boolean;
     selected: {};
 
 }
-
 export default class FraktForm extends React.Component<Props, State>{
     constructor(props: Props){
         super(props)
@@ -21,6 +24,7 @@ export default class FraktForm extends React.Component<Props, State>{
             selected: {},
         }
     }
+
     handleSubmit = () => {
         this.setState({ isSubmitted: true });
       };
@@ -30,8 +34,6 @@ export default class FraktForm extends React.Component<Props, State>{
         date.setDate(date.getDate() + days)
         return date.toLocaleDateString()
     }
-
-    
 
     render(){
         const { selected } = this.state;
@@ -120,23 +122,3 @@ export default class FraktForm extends React.Component<Props, State>{
 }
 
 }
-
-// const FormStyle: CSSProperties = {
-//     display: "flex",
-//     marginTop: "6rem"
-//   };
-
-//   const fraktButtons: CSSProperties = {
-//     display: "flex",
-//     justifyItems: "center",
-//     marginTop: "6rem",
-//     alignItems: "center"
-//   };
-  
-// const fraktBilder: CSSProperties = {
-//     width:"10%",
-// }
-
-// const FraktDataStyle: CSSProperties = {
-
-// }

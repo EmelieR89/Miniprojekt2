@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Product } from "./ProductData";
-import { Button } from "grommet";
 
 export const CartContext = React.createContext<Cart>({
   cart: [],
@@ -27,35 +26,37 @@ export const CartProvider = (props: Props) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = (product: Product) => {
-    const newCart: CartItem[] = Object.assign([], cart)
+    const newCart: CartItem[] = Object.assign([], cart);
+    if (newCart.length < 1) {
+      setCart([{ product, count: 1 }]);
+      return;
+    }
     for (const item of newCart) {
       if (item.product.id === product.id) {
-        item.count++
-        setCart(newCart)
-        
-        return(
-          <Button onClick={() => removeFromCart(product)}>
-            ta bort
-          </Button>
-        )
+        item.count++;
+        setCart(newCart);
+        return;
       }
     }
-
-    setCart([...cart, {product, count: 1}]);
+    setCart([...cart, { product, count: 1 }]);
   };
 
   const removeFromCart = (product: Product) => {
-    const removedCart: CartItem[] = Object.assign([], cart)
-    for( const item of removedCart) {
-      if(item.product.id === product.id && item.count>1){
-        item.count--
-          setCart(removedCart)
+    let removedCart: CartItem[] = [...cart];
+    for (const item of removedCart) {
+      if (item.product.id === product.id && item.count > 1) {
+        item.count--;
+        setCart(removedCart);
 
-          return
+        return;
+      }
+      if (item.product.id === product.id && item.count === 1) {
+        const filteredList = removedCart.filter(
+          currentProduct => currentProduct.product.id !== item.product.id
+        );
+        setCart(filteredList);
       }
     }
-    setCart([...cart, {product, count: -1}]);
-
   };
 
   return (

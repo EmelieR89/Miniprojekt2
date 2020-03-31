@@ -15,7 +15,6 @@ export default class MainContent extends Component<Props> {
       <ResponsiveContext.Consumer>
         {size => (
           <Grid
-            responsive
             justifyContent="center"
             margin="2rem"
             rows={

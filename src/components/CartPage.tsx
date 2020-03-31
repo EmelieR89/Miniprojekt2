@@ -1,58 +1,59 @@
-import React, { Component, CSSProperties, useContext } from "react";
+import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
 import {
   Box,
-  Form,
-  FormField,
   Button,
-  Select,
-  RadioButton,
-  Text
+  Text,
+  Image,
+  Paragraph
 } from "grommet";
 import { Product, productData } from "./ProductData";
 import { CartContext } from "./CartContext";
 
-interface Props extends RouteComponentProps<{ id: string }> {
-  product: Product
-}
+interface Props extends RouteComponentProps<{ id: string }> {}
 
-interface State {
- 
-}
 
-export default class CartPage extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    };
-  
+export const CartPage = (props: Props) => {
+  const { removeFromCart } = useContext(CartContext);
 
-  render() {
-    return (
-      <CartContext.Consumer>
-        {cartState => (
-          <>
-            {cartState.cart.map(item => (
-              <Box
-              justify="center" 
-              align="center"
+  // console.log("Props fmor chartPage: " + props.product.id);
+
+  return (
+    <CartContext.Consumer>
+      {cartState => (
+        <>
+          {cartState.cart.map(item => (
+            <Box
               width="small"
-              basis="small"
+              height="small"
+              margin="small"
+              elevation="medium"
+              responsive
+            >
+              <Text>{item.product.title}</Text>
+              <Image src={item.product.mainImg} fit="cover" />
+              <div style={productBox}>
+                <Text>Antal: {item.count}</Text>
+                <Button
+                  label="Remove"
+                  onClick={() => removeFromCart(item.product)}
+                  color="buttons"
+                  size="small"
+                />
+              </div>
+            </Box>
+          ))}
+          <Link to="/FraktForm">
+            <Button type="submit" label="checka ut"primary={true} color="buttons"></Button>
+          </Link>
+        </>
+      )}
+    </CartContext.Consumer>
+  );
+};
 
-              >
-                {item.product.title}
-                <img src={item.product.mainImg}/>
-                {item.count}
-                <Link to={"/FraktForm"}>
-                <Button label="Gå vidare" size="small"></Button>
-                </Link>
-              </Box>
-            ))}
-          </>
-        )}
-      </CartContext.Consumer>
-      
-    );
-}
-}
-
-
+const productBox: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-around",
+  margin: "0.2rem"
+};
