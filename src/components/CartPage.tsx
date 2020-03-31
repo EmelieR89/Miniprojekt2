@@ -21,15 +21,6 @@ interface State {
   selected: {};
 }
 
-// export default class CartPage extends Component<Props, State> {
-//   constructor(props: Props) {
-//     super(props);
-//     this.state = {
-//       isSubmitted: false,
-//       selected: {}
-//     };
-//   }
-
 export const CartPage = (props: Props) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selected, setSelected] = useState({});
@@ -39,7 +30,6 @@ export const CartPage = (props: Props) => {
     setIsSubmitted(!isSubmitted);
     // this.setState({ isSubmitted: true });
   };
-  // console.log("Props fmor chartPage: " + props.product.id);
 
   return (
     <CartContext.Consumer>
