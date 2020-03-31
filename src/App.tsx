@@ -8,6 +8,7 @@ import { CartPage } from "./components/CartPage";
 import { ProductPage } from "./components/ProductPage";
 import { CartProvider } from "../src/components/CartContext";
 import OmOss from "./components/OmOss";
+import FraktForm from "./components/FraktForm";
 
 const theme = {
   global: {
@@ -53,6 +54,7 @@ function App() {
             <Route path="/ProductPage/:id" component={ProductPage} />
             <Route path="/CartPage/" component={CartPage} />
             <Route path="/OmOss" component={OmOss} />
+            <Route path="/FraktForm" component={FraktForm}/>
           </Switch>
           <Footer />
         </Grommet>
