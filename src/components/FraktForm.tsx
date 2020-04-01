@@ -8,11 +8,11 @@ Text,
 Select} from 'grommet'
 import React, { CSSProperties } from 'react'
 import {FraktData} from './FraktData'
+import { Link } from 'react-router-dom'
 interface Props {
     FraktData: FraktData 
 }
 interface State {
-    isSubmitted: boolean;
     selected: {};
 
 }
@@ -20,14 +20,9 @@ export default class FraktForm extends React.Component<Props, State>{
     constructor(props: Props){
         super(props)
         this.state = {
-            isSubmitted: false,
             selected: {},
         }
     }
-
-    handleSubmit = () => {
-        this.setState({ isSubmitted: true });
-      };
 
     leveransDatum = (days: number) => {
         const date = new Date()
@@ -37,7 +32,6 @@ export default class FraktForm extends React.Component<Props, State>{
 
     render(){
         const { selected } = this.state;
-        if(this.state.isSubmitted === true) {
         return(
             <Box 
             responsive={true} 
@@ -78,47 +72,12 @@ export default class FraktForm extends React.Component<Props, State>{
             ))
             
             }
-             <Button type="submit" label="Submit" primary={true} color="buttons"/>
+            <Link to="/Payment">
+                <Button type="submit" label="Submit" primary={true} color="buttons"/>
+             </Link>
           </Box>      
         )
         
-    } else {
-        return(
-        <Box align="center" responsive={true} fill={true} justify="center">
-            <Form validate="blur" onSubmit={this.handleSubmit}>
-                
-                <FormField 
-                name="name" label="Namn" required={true} type="text"
-                validate={{ regexp: /^[a-öA-Ö]/, message: "Använd bokstäver" }}
-                />
-
-                <FormField name="address" label="Adress" required={true}
-                    validate={{ regexp: /^[a-öA-ö]/, message: "Använd bokstäver"}}
-                />
-
-                <FormField name="postnummer" label="Postnummer" required={true}
-                    validate={{ regexp: /^[0-9]{0,9}$/, message: "Använd siffror mellan 0-9" }}
-                />   
-
-                <FormField 
-                name="telefonnummer" label="Telefonnummer" required={true} 
-                validate={{ regexp: /^[0-9+-]{0,15}$/, message: "Använd siffror mellan 0-9" }}
-                />
-
-                <FormField name="mail" label="Mail" type="email" required={true}/>
-                
-                <FormField
-                label="Land"
-                name="select"
-                component={Select}
-                options={["Sverige", "Norge", "Finland"]}
-                />  
-            <Button fill="horizontal" type="submit" label="Submit" primary={true} color="buttons"/>
-        </Form>
-    
-</Box>
-        )
     }
 }
 
-}

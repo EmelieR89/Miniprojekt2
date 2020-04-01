@@ -44,7 +44,7 @@ export const CartPage = (props: Props) => {
           <Box>
             <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
           </Box>
-          <Link to="/FraktForm">
+          <Link to="/DinaUppgifter">
             <Button
               type="submit"
               label="checka ut"
