@@ -1,17 +1,10 @@
 import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Text,
-  Image,
-  Paragraph
-} from "grommet";
+import { Box, Button, Text, Image, Paragraph } from "grommet";
 import { Product, productData } from "./ProductData";
 import { CartContext } from "./CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
-
 
 export const CartPage = (props: Props) => {
   const { removeFromCart } = useContext(CartContext);
@@ -44,7 +37,12 @@ export const CartPage = (props: Props) => {
             </Box>
           ))}
           <Link to="/FraktForm">
-            <Button type="submit" label="checka ut"primary={true} color="buttons"></Button>
+            <Button
+              type="submit"
+              label="checka ut"
+              primary={true}
+              color="buttons"
+            ></Button>
           </Link>
         </>
       )}
