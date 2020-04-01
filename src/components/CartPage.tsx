@@ -7,7 +7,7 @@ import { CartContext } from "./CartContext";
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 export const CartPage = (props: Props) => {
-  const { removeFromCart } = useContext(CartContext);
+  const { removeFromCart, totalCost } = useContext(CartContext);
 
   // console.log("Props fmor chartPage: " + props.product.id);
 
@@ -23,10 +23,15 @@ export const CartPage = (props: Props) => {
               elevation="medium"
               responsive
             >
-              <Text>{item.product.title}</Text>
+              <Text>
+                {item.product.title + "   "}
+                {item.product.price + " :- /st"}
+              </Text>
+
               <Image src={item.product.mainImg} fit="cover" />
               <div style={productBox}>
                 <Text>Antal: {item.count}</Text>
+
                 <Button
                   label="Remove"
                   onClick={() => removeFromCart(item.product)}
@@ -36,6 +41,9 @@ export const CartPage = (props: Props) => {
               </div>
             </Box>
           ))}
+          <Box>
+            <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
+          </Box>
           <Link to="/FraktForm">
             <Button
               type="submit"
