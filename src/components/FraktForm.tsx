@@ -93,7 +93,7 @@ export default class FraktForm extends React.Component<Props, State>{
                 />
 
                 <FormField name="address" label="Adress" required={true}
-                    validate={{ regexp: /^[a-zA-Z]/, message: "Använd bokstäver" }}
+                    validate={{ regexp: /^[a-öA-ö]/, message: "Använd bokstäver"}}
                 />
 
                 <FormField name="postnummer" label="Postnummer" required={true}
@@ -102,7 +102,7 @@ export default class FraktForm extends React.Component<Props, State>{
 
                 <FormField 
                 name="telefonnummer" label="Telefonnummer" required={true} 
-                validate={{ regexp: /^[0-9]{0,9}$/, message: "Använd siffror mellan 0-9" }}
+                validate={{ regexp: /^[0-9]{0,11}$/, message: "Använd siffror mellan 0-9" }}
                 />
 
                 <FormField name="mail" label="Mail" type="email" required={true}/>
