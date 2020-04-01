@@ -49,7 +49,8 @@ export function ProductPage(props: Props) {
     >
       <Box justify="center" gridArea="infoText">
         {product.title} <br />
-        {product.description}
+        {product.description} <br />
+        {product.price + " :-"}
       </Box>
 
       <Box gridArea="biggerPicture">

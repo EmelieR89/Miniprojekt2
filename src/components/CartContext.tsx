@@ -6,7 +6,8 @@ export const CartContext = React.createContext<Cart>({
   addToCart: () => {},
   removeFromCart: () => {},
   // countNumberOfItems: () => {},
-  itemCounter: 0
+  itemCounter: 0,
+  totalCost: 0
 });
 
 interface Props {
@@ -24,15 +25,32 @@ interface Cart {
   removeFromCart: (product: Product) => void;
   //countNumberOfItems: () => void;
   itemCounter: number;
+  totalCost: number;
 }
 
 export const CartProvider = (props: Props) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [itemCounter, setItemCounter] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   useEffect(() => {
     countNumberOfItems();
+    addTotalCost();
   }, [cart]);
+
+  const addTotalCost = () => {
+    const sum = cart.reduce((total, itemproduct) => {
+      return total + itemproduct.product.price * itemproduct.count;
+    }, 0);
+    setTotalCost(sum);
+  };
+
+  const countNumberOfItems = () => {
+    const counter = cart.reduce((numberOfItems, item) => {
+      return numberOfItems + item.count;
+    }, 0);
+    setItemCounter(counter);
+  };
 
   const addToCart = (product: Product) => {
     const newCart: CartItem[] = Object.assign([], cart);
@@ -70,17 +88,9 @@ export const CartProvider = (props: Props) => {
     }
   };
 
-  const countNumberOfItems = () => {
-    let counter = 0;
-    for (let i = 0; i < cart.length; i++) {
-      counter += cart[i].count;
-    }
-    setItemCounter(counter);
-  };
-
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, itemCounter }}
+      value={{ cart, addToCart, removeFromCart, itemCounter, totalCost }}
     >
       {props.children}
     </CartContext.Provider>

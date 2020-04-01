@@ -19,7 +19,6 @@ interface Props {
 export const Card = (props: Props) => {
   const { addToCart } = useContext(CartContext);
 
-
   function showCartMessage() {
     const hej = document.getElementById("addToCartMessage");
     hej!.className = "show";
@@ -34,22 +33,25 @@ export const Card = (props: Props) => {
         <Box direction="column" justify="center" align="center">
           <Box>
             <Picture fit="cover" src={props.product.mainImg} />
-            <Paragraph
-              alignSelf="center"
-              margin={
-                size === "xsmall" ? "2px" : size === "small" ? "5px" : "10px"
-              }
-              responsive
-              size={
-                size === "xsmall"
-                  ? "small"
-                  : size === "small"
-                  ? "small"
-                  : "medium"
-              }
-            >
-              {props.product.title}
-            </Paragraph>
+            <div style={styleParagraph}>
+              <Paragraph
+                alignSelf="center"
+                margin={
+                  size === "xsmall" ? "2px" : size === "small" ? "5px" : "10px"
+                }
+                responsive
+                size={
+                  size === "xsmall"
+                    ? "small"
+                    : size === "small"
+                    ? "small"
+                    : "medium"
+                }
+              >
+                {props.product.title}
+              </Paragraph>
+              <Paragraph>{props.product.price + " :-"}</Paragraph>
+            </div>
           </Box>
           <div style={buttonStyles}>
             <Button
@@ -94,9 +96,7 @@ export const Card = (props: Props) => {
               />
             </Link>
           </div>
-          <div id="addToCartMessage">
-            Produkten har lagts till i kundvagnen
-          </div>
+          <div id="addToCartMessage">Produkten har lagts till i kundvagnen</div>
         </Box>
       )}
     </ResponsiveContext.Consumer>
@@ -105,4 +105,9 @@ export const Card = (props: Props) => {
 
 const buttonStyles: CSSProperties = {
   display: "flex"
+};
+
+const styleParagraph: CSSProperties = {
+  display: "flex",
+  justifyContent: "center"
 };
