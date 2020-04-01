@@ -95,7 +95,7 @@ export const Card = (props: Props) => {
             </Link>
           </div>
           <div id="addToCartMessage">
-            {props.product.title} har lagts till i kundvagnen
+            Produkten har lagts till i kundvagnen
           </div>
         </Box>
       )}
