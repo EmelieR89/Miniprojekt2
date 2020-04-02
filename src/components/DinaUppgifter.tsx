@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 interface Props {}
 
 interface State {
-  isSubmitted: boolean;
-  selected: {};
+  telefonnr: number;
 }
 
 export default class DinaUppgifter extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      isSubmitted: false,
-      selected: {}
+      telefonnr: 0
     };
   }
 
@@ -51,6 +49,7 @@ export default class DinaUppgifter extends React.Component<Props, State> {
             name="telefonnummer"
             label="Telefonnummer"
             required={true}
+            value={this.state.telefonnr}
             validate={{
               regexp: /^[0-9+-]{0,15}$/,
               message: "Använd siffror mellan 0-9"
