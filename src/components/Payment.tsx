@@ -32,8 +32,15 @@ export const Payment = (props: Props) => {
             onChange={event => setValue(event.target.value)}
           />
           {value === "Faktura" && (
-            <Box>
-              <Paragraph>Här ska all fakturainfo ligga</Paragraph>
+            <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
+              <Form>
+              <FormField
+                name="mail"
+                label="Mail"
+                type="email"
+                required={true}
+              />
+              </Form>
             </Box>
           )}
           {value === "Swish" && (
