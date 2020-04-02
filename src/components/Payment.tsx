@@ -23,7 +23,7 @@ export const Payment = (props: Props) => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <div>
+        <Box fill={true}>
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -62,7 +62,7 @@ export const Payment = (props: Props) => {
           )}
           {value === "Kort" && (
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
-              <Form>
+              <Form validate="blur">
                 <Text size={size === "xsmall" ? "small" : "medium"}>Namn</Text>
                 <FormField
                   name="name"
@@ -179,7 +179,7 @@ export const Payment = (props: Props) => {
               </Link>
             </Box>
           )}
-        </div>
+        </Box>
       )}
     </ResponsiveContext.Consumer>
   );
