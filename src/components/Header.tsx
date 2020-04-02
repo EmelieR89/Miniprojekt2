@@ -11,7 +11,7 @@ import {
   Text
 } from "grommet";
 import { Menu as Hamburger, Home, Cart, Favorite } from "grommet-icons";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../contexts/CartContext";
 
 interface Props {}
 

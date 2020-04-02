@@ -8,7 +8,7 @@ import {
 } from "grommet";
 import { Cart, Favorite } from "grommet-icons";
 import { Product } from "./ProductData";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import "../index.css";
 

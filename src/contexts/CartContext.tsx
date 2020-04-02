@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Product } from "./ProductData";
+import { Product } from "../components/ProductData";
 
 export const CartContext = React.createContext<Cart>({
   cart: [],
@@ -11,7 +11,7 @@ export const CartContext = React.createContext<Cart>({
 });
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
 }
 
 interface CartItem {

@@ -35,7 +35,8 @@ export const Payment = (props: Props) => {
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
               <Form>
               <FormField
-                name="mail"
+                name="email"
+                autoComplete="on"
                 label="Mail"
                 type="email"
                 required={true}
@@ -47,7 +48,8 @@ export const Payment = (props: Props) => {
             <Box width="small" margin="medium">
               <Form validate="blur">
                 <FormField
-                  name="telefonnummer"
+                  name="tel"
+                  autoComplete="on"
                   label="Telefonnummer"
                   required={true}
                   validate={{
@@ -72,7 +74,8 @@ export const Payment = (props: Props) => {
               <Form validate="blur">
                 <Text size={size === "xsmall" ? "small" : "medium"}>Namn</Text>
                 <FormField
-                  name="name"
+                  name="cc-name"
+                  autoComplete="on"
                   // label="Namn"
                   required={true}
                   type="text"
@@ -87,6 +90,8 @@ export const Payment = (props: Props) => {
                 Giltighetsdatum
               </Text>
               <MaskedInput
+                name="cc-exp"
+                autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
                 mask={[
                   {
@@ -133,6 +138,8 @@ export const Payment = (props: Props) => {
                 Kortnummer
               </Text>
               <MaskedInput
+                name="cc-number"
+                autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
                 mask={[
                   {
@@ -166,6 +173,8 @@ export const Payment = (props: Props) => {
               <Text size={size === "xsmall" ? "small" : "medium"}>CVC</Text>
 
               <MaskedInput
+                name="cc-csc"
+                autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
                 mask={[
                   {

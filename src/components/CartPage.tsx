@@ -2,20 +2,19 @@ import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
 import { Box, Button, Text, Image, Paragraph } from "grommet";
 import { Product, productData } from "./ProductData";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../contexts/CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 export const CartPage = (props: Props) => {
-  const { removeFromCart, totalCost } = useContext(CartContext);
+  const { removeFromCart, totalCost, cart } = useContext(CartContext);
 
   // console.log("Props fmor chartPage: " + props.product.id);
 
   return (
-    <CartContext.Consumer>
-      {cartState => (
+
         <>
-          {cartState.cart.map(item => (
+          {cart.map(item => (
             <Box
               width="small"
               height="small"
@@ -44,7 +43,7 @@ export const CartPage = (props: Props) => {
           <Box>
             <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
           </Box>
-          <Link to="/DinaUppgifter">
+          <Link to="/UserData">
             <Button
               type="submit"
               label="checka ut"
@@ -53,8 +52,6 @@ export const CartPage = (props: Props) => {
             ></Button>
           </Link>
         </>
-      )}
-    </CartContext.Consumer>
   );
 };
 
