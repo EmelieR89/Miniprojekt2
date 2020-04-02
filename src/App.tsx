@@ -12,6 +12,8 @@ import FraktForm from "./components/FraktForm";
 import UserData from "./components/UserData";
 import { Payment } from "./components/Payment";
 import { Beställningsbekräftelse } from "./components/Beställningsbekräftelse";
+import { UserDataProvider } from "./contexts/UserDataContext";
+import { ShippingDataProvider } from "./contexts/ShippingContext";
 
 const theme = {
   global: {
@@ -50,23 +52,27 @@ function App() {
   return (
     <BrowserRouter>
       <CartProvider>
+        <UserDataProvider>
+          <ShippingDataProvider>
         <Grommet theme={theme} full>
           <Header />
           <Switch>
             <Route path="/" exact component={MainContent} />
-            <Route path="/ProductPage/:id" component={ProductPage} />
-            <Route path="/CartPage/" component={CartPage} />
-            <Route path="/OmOss" component={OmOss} />
-            <Route path="/UserData" component={UserData} />
-            <Route path="/FraktForm" component={FraktForm} />
-            <Route path="/Payment" component={Payment} />
+            <Route path="/productpage/:id" component={ProductPage} />
+            <Route path="/cartpage/" component={CartPage} />
+            <Route path="/omoss" component={OmOss} />
+            <Route path="/userdata" component={UserData} />
+            <Route path="/fraktform" component={FraktForm} />
+            <Route path="/payment" component={Payment} />
             <Route
-              path="/Beställningsbekräftelse"
+              path="/beställningsbekräftelse"
               component={Beställningsbekräftelse}
             />
           </Switch>
           <Footer />
         </Grommet>
+        </ShippingDataProvider>
+        </UserDataProvider>
       </CartProvider>
     </BrowserRouter>
   );

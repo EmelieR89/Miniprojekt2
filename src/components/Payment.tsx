@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import {
   Box,
   RadioButton,
@@ -9,9 +9,13 @@ import {
   Form,
   Button,
   MaskedInput,
-  ResponsiveContext
+  ResponsiveContext,
+  Image
 } from "grommet";
 import { Link } from "react-router-dom";
+import { UserDataContext } from "../contexts/UserDataContext";
+import { CartContext } from "../contexts/CartContext";
+import { ShippingContext } from "../contexts/ShippingContext";
 
 interface Props {}
 
@@ -19,6 +23,17 @@ export const Payment = (props: Props) => {
   const [value, setValue] = useState("Faktura");
   const [date, setDate] = useState("");
   const [cardnr, setCardNr] = useState("");
+
+  const { userData } = useContext(UserDataContext);
+  const { cart, totalCost } = useContext(CartContext)
+  const { shippingData } = useContext(ShippingContext)
+
+ /*  const addTotalCostCartAndShipping = () => {
+    const sum = cart.reduce((total, itemproduct) => {
+      return total + itemproduct.product.price * itemproduct.count;
+    }, 0);
+    setTotalCost(sum);
+  }; */
 
   return (
     <ResponsiveContext.Consumer>
@@ -34,13 +49,14 @@ export const Payment = (props: Props) => {
           {value === "Faktura" && (
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
               <Form>
-              <FormField
-                name="email"
-                autoComplete="on"
-                label="Mail"
-                type="email"
-                required={true}
-              />
+                <FormField
+                  name="email"
+                  value={userData.email}
+                  autoComplete="on"
+                  label="Mail"
+                  type="email"
+                  required={true}
+                />
               </Form>
             </Box>
           )}
@@ -51,6 +67,7 @@ export const Payment = (props: Props) => {
                   name="tel"
                   autoComplete="on"
                   label="Telefonnummer"
+                  value={userData.telefon}
                   required={true}
                   validate={{
                     regexp: /^[0-9+-]{0,15}$/,
@@ -58,14 +75,6 @@ export const Payment = (props: Props) => {
                   }}
                 />
                 <br />
-                <Link to="/Beställningsbekräftelse">
-                  <Button
-                    type="submit"
-                    label="Submit"
-                    primary={true}
-                    color="buttons"
-                  />
-                </Link>
               </Form>
             </Box>
           )}
@@ -75,6 +84,7 @@ export const Payment = (props: Props) => {
                 <Text size={size === "xsmall" ? "small" : "medium"}>Namn</Text>
                 <FormField
                   name="cc-name"
+                  value={userData.name}
                   autoComplete="on"
                   // label="Namn"
                   required={true}
@@ -185,18 +195,43 @@ export const Payment = (props: Props) => {
                 ]}
               />
               <br />
-              <Link to="/Beställningsbekräftelse">
-                <Button
-                  type="submit"
-                  label="Submit"
-                  primary={true}
-                  color="buttons"
-                />
-              </Link>
             </Box>
           )}
+          <Link to="/beställningsbekräftelse">
+            <Button
+            margin="medium"
+              type="submit"
+              label="Submit"
+              primary={true}
+              color="buttons"
+            />
+          </Link>
+          <Box>
+            {cart.map(item => (
+            <Box
+              width="small"
+              height="small"
+              margin="small"
+              elevation="medium"
+              responsive
+            >
+              <Text>
+                {item.product.title + "   "}
+                {item.product.price + " :- /st"}
+              </Text>
+
+              <Image src={item.product.mainImg} fit="cover" />
+              <div>
+                <Text>Antal: {item.count}</Text>
+              </div>
+            </Box>
+          ))}
+          </Box>
+              <Box>
+                {totalCost}
+              </Box>
         </Box>
-      )}
+     )}
     </ResponsiveContext.Consumer>
   );
 };

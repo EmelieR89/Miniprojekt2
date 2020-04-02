@@ -37,13 +37,13 @@ export function Header(props: Props) {
               dropAlign={{ top: "bottom", right: "right" }}
               dropContent={
                 <Box pad="large" background="light-2">
-                  <Link to="/OmOss" style={linkStyle}>
+                  <Link to="/omoss" style={linkStyle}>
                     Om oss
                   </Link>
-                  <Link to="/Gillade" style={linkStyle}>
+                  <Link to="/gillade" style={linkStyle}>
                     Gillade
                   </Link>
-                  <Link to="/CartPage" style={linkStyle}>
+                  <Link to="/cartpage" style={linkStyle}>
                     Cart
                   </Link>
                 </Box>
@@ -66,7 +66,7 @@ export function Header(props: Props) {
                 </Link>
               </Nav>
             )}
-            <Link to="/CartPage">
+            <Link to="/cartpage">
               <CartContext.Consumer>
                 {cartState => (
                   <div>
