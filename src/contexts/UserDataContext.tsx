@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 export const UserDataContext = React.createContext<User>({
     userData: {} as UserData,
@@ -43,6 +43,8 @@ export function UserDataProvider(props: Props) {
         city: "",
     })
 
+    console.log("state", userData);
+    
     const setName = (name: string) => setUserData({ ...userData, name })
     const setEmail = (email: string) => setUserData({ ...userData, email })
     const setTelefon = (telefon: string) => setUserData({ ...userData, telefon})

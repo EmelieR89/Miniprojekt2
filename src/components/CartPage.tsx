@@ -1,7 +1,6 @@
 import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
 import { Box, Button, Text, Image, Paragraph } from "grommet";
-import { Product, productData } from "./ProductData";
 import { CartContext } from "../contexts/CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
@@ -43,7 +42,7 @@ export const CartPage = (props: Props) => {
           <Box>
             <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
           </Box>
-          <Link to="/UserData">
+          <Link to="/userdata">
             <Button
               type="submit"
               label="checka ut"

@@ -1,83 +1,68 @@
-import {Grommet, 
-FormField, 
-Box, 
-Form, 
-Button, 
-RadioButton, 
-Text, 
-Select} from 'grommet'
-import React, { CSSProperties } from 'react'
-import {FraktData} from './FraktData'
-import { Link } from 'react-router-dom'
-interface Props {
-    FraktData: FraktData 
+import {
+  Box,
+  Button,
+  RadioButton,
+  Text,
+} from "grommet";
+import React, { useContext } from "react";
+import { FraktData } from "./FraktData";
+import { Link } from "react-router-dom";
+import { ShippingContext } from "../contexts/ShippingContext";
+
+
+export default function FraktForm() {
+    const { shippingData, setShipping } = useContext(ShippingContext)
+
+ const leveransDatum = (days: number) => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toLocaleDateString();
+  };
+
+  const [selected, setSelected] = React.useState("Postnord");
+
+
+  return (
+    <Box
+      responsive={true}
+      fill={true}
+      justify="center"
+      alignContent="center"
+      wrap={true}
+    >
+      <Text size="large" alignSelf="center">
+        Var vänlig välj fraktsätt
+      </Text>
+      {FraktData.map(frakt => (
+        <Box key={frakt.namn} margin={{ vertical: "medium" }} responsive={true}>
+          <RadioButton
+            name="shippingmethod"
+            value={frakt.namn}
+            checked={selected === frakt.namn}
+            label={frakt.namn}
+            onChange={e => {
+              if(e.target.checked) {
+                setSelected(frakt.namn  )
+                setShipping(e.target.value as any)
+              }
+            }}
+          ></RadioButton>
+
+          <Box direction="row" gap="small">
+            <Text>{frakt.beskrivning}</Text>
+          </Box>
+
+          <Box direction="row" gap="small">
+            <Text>Pris: {frakt.pris}</Text>
+          </Box>
+          <Box direction="row" gap="small">
+            <Text>Leveransdatum: {leveransDatum(frakt.days)}</Text>
+          </Box>
+        </Box>
+      ))}
+      <Link to="/payment">
+        <Button type="submit" label="Submit" primary={true} color="buttons" />
+      </Link>
+    </Box>
+  );
 }
-interface State {
-    selected: {};
-
-}
-export default class FraktForm extends React.Component<Props, State>{
-    constructor(props: Props){
-        super(props)
-        this.state = {
-            selected: {},
-        }
-    }
-
-    leveransDatum = (days: number) => {
-        const date = new Date()
-        date.setDate(date.getDate() + days)
-        return date.toLocaleDateString()
-    }
-
-    render(){
-        const { selected } = this.state;
-        return(
-            <Box 
-            responsive={true} 
-            fill={true}
-            justify="center"
-            alignContent="center"
-            wrap={true}
-            >
-
-            <Text size="large" alignSelf="center">Var vänlig välj fraktsätt</Text>
-            {FraktData.map(Frakt => (
-              <Box key={Frakt.namn} 
-              margin={{ vertical: 'medium'}} 
-              responsive={true} 
-              
-              >
-                 <RadioButton
-                    name= "props"
-                    checked={selected === Frakt.namn}
-                    label={Frakt.namn}
-                    onChange={() => this.setState({ selected: Frakt.namn })}
-                >
-                 </RadioButton>
-
-                <Box direction="row" gap="small">
-                    <Text>{Frakt.beskrivning}</Text>
-                </Box>
-                
-                <Box direction="row" gap="small">
-                    <Text>Pris: {Frakt.pris}</Text>
-                </Box>
-                <Box direction="row" gap="small">
-                    <Text>Leveransdatum: {this.leveransDatum(Frakt.days)}</Text>
-                </Box>
-                
-              </Box>
-             
-            ))
-            
-            }
-            <Link to="/Payment">
-                <Button type="submit" label="Submit" primary={true} color="buttons"/>
-             </Link>
-          </Box>      
-        )
-        
-    }
-}
-

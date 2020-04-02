@@ -69,7 +69,7 @@ export default function UserData() {
         type="email" 
         required={true} />
 
-        <Link to="/FraktForm">
+        <Link to="/fraktform">
           <Button
             fill="horizontal"
             type="submit"

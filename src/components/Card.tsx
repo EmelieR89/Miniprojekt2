@@ -95,7 +95,7 @@ export const Card = (props: Props) => {
               }}
               color="blue"
             />
-            <Link to={"ProductPage/" + props.product.id}>
+            <Link to={"productpage/" + props.product.id}>
               <Button
                 label="Läs mer"
                 size="small"
