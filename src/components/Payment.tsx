@@ -20,6 +20,19 @@ export const Payment = (props: Props) => {
   const [date, setDate] = useState("");
   const [cardnr, setCardNr] = useState("");
 
+const disableButton = () => {
+  console.log('heejje');
+  return(
+    <Button
+        name="submit"
+        type="submit"
+        label="Submit"
+        disabled={true}>
+    </Button>
+  
+  )
+}
+
   return (
     <ResponsiveContext.Consumer>
       {size => (
@@ -187,10 +200,15 @@ export const Payment = (props: Props) => {
               <br />
               <Link to="/Beställningsbekräftelse">
                 <Button
+                  name="submit"
+                  focusIndicator={true}
                   type="submit"
                   label="Submit"
                   primary={true}
                   color="buttons"
+                  onClick={() => {
+                    disableButton()
+                  }}
                 />
               </Link>
             </Box>

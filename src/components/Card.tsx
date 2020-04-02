@@ -44,13 +44,21 @@ export const Card = (props: Props) => {
                   size === "xsmall"
                     ? "small"
                     : size === "small"
-                    ? "small"
+                    ? "medium"
                     : "medium"
                 }
               >
                 {props.product.title}
               </Paragraph>
-              <Paragraph>{props.product.price + " :-"}</Paragraph>
+              <Paragraph 
+              size={
+                size === "xsmall"
+                  ? "small"
+                  : size === "small"
+                  ? "medium"
+                  : "medium"
+              }
+              >{props.product.price + " :-"}</Paragraph>
             </div>
           </Box>
           <div style={buttonStyles}>
