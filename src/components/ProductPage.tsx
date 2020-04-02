@@ -3,7 +3,7 @@ import { Box, Image as Picture, Grid, Button } from "grommet";
 import { productData, Product } from "./ProductData";
 import { RouteComponentProps } from "react-router-dom";
 import { Cart } from "grommet-icons";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../contexts/CartContext";
 import "../index.css";
 
 interface Props extends RouteComponentProps<{ id: string }> {

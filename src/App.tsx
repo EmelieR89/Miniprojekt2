@@ -6,10 +6,10 @@ import Footer from "./components/Footer";
 import MainContent from "./components/MainContent";
 import { CartPage } from "./components/CartPage";
 import { ProductPage } from "./components/ProductPage";
-import { CartProvider } from "../src/components/CartContext";
+import { CartProvider } from "./contexts/CartContext";
 import OmOss from "./components/OmOss";
 import FraktForm from "./components/FraktForm";
-import DinaUppgifter from "./components/DinaUppgifter";
+import UserData from "./components/UserData";
 import { Payment } from "./components/Payment";
 import { Beställningsbekräftelse } from "./components/Beställningsbekräftelse";
 
@@ -57,7 +57,7 @@ function App() {
             <Route path="/ProductPage/:id" component={ProductPage} />
             <Route path="/CartPage/" component={CartPage} />
             <Route path="/OmOss" component={OmOss} />
-            <Route path="/DinaUppgifter" component={DinaUppgifter} />
+            <Route path="/UserData" component={UserData} />
             <Route path="/FraktForm" component={FraktForm} />
             <Route path="/Payment" component={Payment} />
             <Route
