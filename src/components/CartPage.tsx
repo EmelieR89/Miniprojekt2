@@ -12,7 +12,7 @@ export const CartPage = (props: Props) => {
 
   return (
 
-        <>
+        <Box fill={true}>
           {cart.map(item => (
             <Box
               width="small"
@@ -50,7 +50,7 @@ export const CartPage = (props: Props) => {
               color="buttons"
             ></Button>
           </Link>
-        </>
+        </Box>
   );
 };
 
