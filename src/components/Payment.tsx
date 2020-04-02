@@ -229,6 +229,7 @@ export const Payment = (props: Props) => {
           </Box>
               <Box>
                 {totalCost}
+                {shippingData.selectedShipping}
               </Box>
         </Box>
      )}

@@ -51,29 +51,29 @@ const theme = {
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
+      <ShippingDataProvider>
         <UserDataProvider>
-          <ShippingDataProvider>
-        <Grommet theme={theme} full>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={MainContent} />
-            <Route path="/productpage/:id" component={ProductPage} />
-            <Route path="/cartpage/" component={CartPage} />
-            <Route path="/omoss" component={OmOss} />
-            <Route path="/userdata" component={UserData} />
-            <Route path="/fraktform" component={FraktForm} />
-            <Route path="/payment" component={Payment} />
-            <Route
-              path="/beställningsbekräftelse"
-              component={Beställningsbekräftelse}
-            />
-          </Switch>
-          <Footer />
-        </Grommet>
-        </ShippingDataProvider>
+          <CartProvider>
+            <Grommet theme={theme} full>
+              <Header />
+              <Switch>
+                <Route path="/" exact component={MainContent} />
+                <Route path="/productpage/:id" component={ProductPage} />
+                <Route path="/cartpage/" component={CartPage} />
+                <Route path="/omoss" component={OmOss} />
+                <Route path="/userdata" component={UserData} />
+                <Route path="/fraktform" component={FraktForm} />
+                <Route path="/payment" component={Payment} />
+                <Route
+                  path="/beställningsbekräftelse"
+                  component={Beställningsbekräftelse}
+                />
+              </Switch>
+              <Footer />
+            </Grommet>
+          </CartProvider>
         </UserDataProvider>
-      </CartProvider>
+      </ShippingDataProvider>
     </BrowserRouter>
   );
 }
