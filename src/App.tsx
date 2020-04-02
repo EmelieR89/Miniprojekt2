@@ -52,7 +52,6 @@ const theme = {
 function App() {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       <ShippingDataProvider>
         <UserDataProvider>
           <CartProvider>
@@ -76,27 +75,6 @@ function App() {
           </CartProvider>
         </UserDataProvider>
       </ShippingDataProvider>
-=======
-      <CartProvider>
-        <Grommet theme={theme} full={true} style={{height: "100vh"}}>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={MainContent} />
-            <Route path="/ProductPage/:id" component={ProductPage} />
-            <Route path="/CartPage/" component={CartPage} />
-            <Route path="/OmOss" component={OmOss} />
-            <Route path="/UserData" component={UserData} />
-            <Route path="/FraktForm" component={FraktForm} />
-            <Route path="/Payment" component={Payment} />
-            <Route
-              path="/Beställningsbekräftelse"
-              component={Beställningsbekräftelse}
-            />
-          </Switch>
-          <Footer />
-        </Grommet>
-      </CartProvider>
->>>>>>> master
     </BrowserRouter>
   );
 }
