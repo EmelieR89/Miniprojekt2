@@ -10,7 +10,8 @@ import { CartProvider } from "../src/components/CartContext";
 import OmOss from "./components/OmOss";
 import FraktForm from "./components/FraktForm";
 import DinaUppgifter from "./components/DinaUppgifter";
-import  Payment  from "./components/Payment";
+import { Payment } from "./components/Payment";
+import { Beställningsbekräftelse } from "./components/Beställningsbekräftelse";
 
 const theme = {
   global: {
@@ -56,9 +57,13 @@ function App() {
             <Route path="/ProductPage/:id" component={ProductPage} />
             <Route path="/CartPage/" component={CartPage} />
             <Route path="/OmOss" component={OmOss} />
-            <Route path="/DinaUppgifter" component={DinaUppgifter}/>
-            <Route path="/FraktForm" component={FraktForm}/>
-            <Route path="/Payment" component={Payment}/>
+            <Route path="/DinaUppgifter" component={DinaUppgifter} />
+            <Route path="/FraktForm" component={FraktForm} />
+            <Route path="/Payment" component={Payment} />
+            <Route
+              path="/Beställningsbekräftelse"
+              component={Beställningsbekräftelse}
+            />
           </Switch>
           <Footer />
         </Grommet>
