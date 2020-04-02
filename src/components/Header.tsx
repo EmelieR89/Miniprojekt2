@@ -30,7 +30,7 @@ export function Header(props: Props) {
           elevation="medium"
           {...props}
         >
-          <div style={firstPartOfHeader}>
+          <div style={stylingHeader}>
             <DropButton
               label={<Hamburger />}
               plain
@@ -54,39 +54,45 @@ export function Header(props: Props) {
               <Image src="./KerstinLogga.PNG" style={imgStyle} />
             </Link>
           </div>
-          {size !== "xsmall" && (
-            <Nav direction="row" background="navbar" pad="medium">
-              <Link to="/">
-                <Button icon={<Home />} color="icon" />
-              </Link>
-              <Link to="/">
-                {" "}
-                <Button icon={<Favorite />} color="icon" />{" "}
-              </Link>
-              <Link to="/CartPage">
-                <CartContext.Consumer>
-                  {cartState => (
-                    <div>
-                      {cartState.itemCounter < 1 ? (
+          <div style={stylingHeader}>
+            {size !== "xsmall" && (
+              <Nav direction="row" background="navbar">
+                <Link to="/">
+                  <Button icon={<Home />} color="icon" />
+                </Link>
+                <Link to="/">
+                  {" "}
+                  <Button icon={<Favorite />} color="icon" />{" "}
+                </Link>
+              </Nav>
+            )}
+            <Link to="/CartPage">
+              <CartContext.Consumer>
+                {cartState => (
+                  <div>
+                    {cartState.itemCounter < 1 ? (
+                      <Button
+                        icon={<Cart />}
+                        color="icon"
+                        style={{ marginLeft: "20px" }}
+                      />
+                    ) : (
+                      <Stack anchor="top-right">
                         <Button icon={<Cart />} color="icon" />
-                      ) : (
-                        <Stack anchor="top-right">
-                          <Button icon={<Cart />} color="icon" />
-                          <Box
-                            background="#cdf9c6"
-                            pad={{ horizontal: "xsmall" }}
-                            round
-                          >
-                            <Text>{cartState.itemCounter}</Text>
-                          </Box>
-                        </Stack>
-                      )}
-                    </div>
-                  )}
-                </CartContext.Consumer>
-              </Link>
-            </Nav>
-          )}
+                        <Box
+                          background="#cdf9c6"
+                          pad={{ horizontal: "xsmall" }}
+                          round
+                        >
+                          <Text>{cartState.itemCounter}</Text>
+                        </Box>
+                      </Stack>
+                    )}
+                  </div>
+                )}
+              </CartContext.Consumer>
+            </Link>
+          </div>
         </Box>
       )}
     </ResponsiveContext.Consumer>
@@ -98,7 +104,7 @@ const imgStyle: CSSProperties = {
   marginLeft: "2rem"
 };
 
-const firstPartOfHeader: CSSProperties = {
+const stylingHeader: CSSProperties = {
   display: "flex"
 };
 
