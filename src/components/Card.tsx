@@ -74,7 +74,6 @@ export const Card = (props: Props) => {
                   }
                 />
               }
-              // onClick={addToCart} //  Like img
               color="blue"
             />
             <Button

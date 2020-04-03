@@ -1,4 +1,4 @@
-export function CreateOrder(cart: any ) {
+export function CreateOrder(cart: any, userData: any, selectedShipping: any ) {
   // TODO: when implementing a backend use the arguments to process the order..
   return new Promise((resolve, reject) => {
     setTimeout(() => {

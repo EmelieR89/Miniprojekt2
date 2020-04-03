@@ -1,7 +1,7 @@
 import { Box, Button, RadioButton, Text, Form } from "grommet";
 import React, { useContext, useState } from "react";
 import { FraktData } from "./FraktData";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { ShippingContext } from "../contexts/ShippingContext";
 
 export default function FraktForm() {
@@ -29,7 +29,8 @@ export default function FraktForm() {
       justify="center"
       alignContent="center"
       responsive={true}
-      wrap={true} >
+      wrap={true} 
+      >
 
     <Form validate="blur" onSubmit={handleOnSubmit}>
     <Box margin="small">

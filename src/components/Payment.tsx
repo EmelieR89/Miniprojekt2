@@ -1,24 +1,20 @@
 import React, {
-  Component,
-  useEffect,
   useState,
   useContext,
   CSSProperties
 } from "react";
 import {
   Box,
-  RadioButton,
   Text,
   FormField,
   RadioButtonGroup,
-  Paragraph,
   Form,
   Button,
   MaskedInput,
   ResponsiveContext,
   Image
 } from "grommet";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
@@ -49,7 +45,7 @@ export const Payment = (props: Props) => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box align="center">
+        <Box style={flexStyle}align="center">
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -220,8 +216,7 @@ export const Payment = (props: Props) => {
               color="buttons"
               onClick={() => {
                 setLoading(true)
-                // TODO: sen all info to create order...
-                CreateOrder(cart, /* userData, selectedShipping, selectedPayment */).then(resolve => {
+                CreateOrder(cart, userData, shippingData.selectedShipping).then(resolve => {
                   setComplete(true)                
                 })
               }}
@@ -254,6 +249,9 @@ export const Payment = (props: Props) => {
   );
 };
 
-const sammanfattning: CSSProperties = {
-  display: "flex"
-};
+const flexStyle: CSSProperties = {
+  display: "flex",
+  flexGrow: 1,
+  minHeight: "90%"
+}
+
