@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserDataContext } from "../contexts/UserDataContext";
-import { grommet, Text, Heading, Box, Paragraph, Image } from "grommet";
+import { grommet, Text, Heading, Box, Paragraph, Image, ResponsiveContext } from "grommet";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
 
@@ -10,22 +10,32 @@ export const Beställningsbekräftelse = () => {
 
   const { userData } = useContext(UserDataContext);
 
+  const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
+  
+  
+  const leveransDatum = (days: number) => {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toLocaleDateString();
+  };
   const ordernr = (max: number) => {
     return Math.floor(Math.random() * Math.floor(max));
   };
 
   return (
-    <Box align="center" fill={true} gap="small">
+    <ResponsiveContext.Consumer>
+      {size =>(
+    <Box align="center" margin="medium" gap="small">
       <Heading>Tack för din order!</Heading>
-      <Text>Ditt ordernr är: {ordernr(2839873)} </Text>
-      <Text>Den totala summan på din order blev: {totalCost}</Text>
+      <Text size={size==="xsmall" ? "small": "medium"}>Ditt ordernr är: {ordernr(2839873)} </Text>
+      <Text size={size==="xsmall" ? "small": "medium"}>Den totala summan på din order blev: {totalCostAllTogether} :- </Text>
       {/* här vill vi hämta det vi har köpt, vad det kostade, och när det ska levereras */}
-      <Text>
-        Din order kommer att finnas tillhanda den:{" "}
+      <Text size={size==="xsmall" ? "small": "medium"}>
+        Din order kommer att finnas tillhanda den: {leveransDatum(shippingData.selectedShipping.days)}
         {/* {shippingData.selectedShipping} */}
       </Text>
-      <Text>En sammanfattning av din order kan du se här: </Text>
-      <Box fill={true} alignContent="center">
+      <Text size={size==="xsmall" ? "small": "medium"}>En sammanfattning av din order kan du se här: </Text>
+      <Box fill={true} align="center">
         {cart.map(item => (
           <Box
             width="small"
@@ -34,18 +44,20 @@ export const Beställningsbekräftelse = () => {
             elevation="medium"
             responsive
           >
-            <Text>
+            <Text size={size==="xsmall" ? "small": "medium"}>
               {item.product.title + "   "}
               {item.product.price + " :- /st"}
             </Text>
 
             <Box>
-              <Text>Antal: {item.count}</Text>
+              <Text size={size==="xsmall" ? "small": "medium"}>Antal: {item.count}</Text>
               <Image src={item.product.mainImg} fit="cover" />
             </Box>
           </Box>
         ))}
       </Box>
     </Box>
+    )}
+</ResponsiveContext.Consumer>
   );
 };

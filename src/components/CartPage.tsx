@@ -12,7 +12,7 @@ export const CartPage = (props: Props) => {
 
   if(cart.length >= 1) {
   return(
-    <Box fill={true} flex="grow" align="center">
+    <Box flex="grow" align="center">
     <Text margin="small" size="large">
       Din kundvagn
     </Text>
