@@ -53,7 +53,7 @@ export default function FraktForm() {
           </Box>
 
           <Box direction="row" gap="small">
-            <Text>Pris: {frakt.pris}</Text>
+            <Text>Pris: {frakt.pris} :-</Text>
           </Box>
           <Box direction="row" gap="small">
             <Text>Leveransdatum: {leveransDatum(frakt.days)}</Text>
@@ -61,7 +61,7 @@ export default function FraktForm() {
         </Box>
       ))}
       <Link to="/payment">
-        <Button type="submit" label="Submit" primary={true} color="buttons" />
+        <Button type="submit" label="Nästa" primary={true} color="buttons" />
       </Link>
     </Box>
   );

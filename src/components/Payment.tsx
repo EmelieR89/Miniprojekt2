@@ -210,12 +210,12 @@ const disableButton = () => {
             </Box>
           )}
           <Box direction="row">
-          totalkostnad: {totalCost}
+          totalkostnad: {totalCost}:-
           <Link to="/beställningsbekräftelse">
             <Button
               margin="medium"
               type="submit"
-              label="Submit"
+              label="Bekräfta köp"
               primary={true}
               color="buttons"
               onClick={() => {

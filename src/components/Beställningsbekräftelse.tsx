@@ -19,7 +19,7 @@ const ordernr = (max: number)  => {
     <Box align="center" fill={true} gap="small">
       <Heading>Tack för din order!</Heading>
           <Text>Ditt ordernr är: {ordernr(2839873)} </Text>
-          <Text>Den totala summan på din order blev: {totalCost}</Text>
+          <Text>Den totala summan på din order blev: {totalCost} :-</Text>
             {/* här vill vi hämta det vi har köpt, vad det kostade, och när det ska levereras */}
           <Text>Din order kommer att finnas tillhanda den: {shippingData.selectedShipping}</Text>
           <Text>En sammanfattning av din order kan du se här: </Text>

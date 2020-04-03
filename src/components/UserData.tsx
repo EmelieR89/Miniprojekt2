@@ -74,7 +74,7 @@ export default function UserData() {
             value="submit"
             fill="horizontal"
             type="submit"
-            label="Submit"
+            label="Nästa"
             primary={true}
             color="buttons"
           />

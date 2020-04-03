@@ -45,7 +45,7 @@ export const CartPage = (props: Props) => {
           <Link to="/userdata">
             <Button 
               type="submit"
-              label="checka ut"
+              label="Nästa"
               primary={true}
               color="buttons"
             ></Button>
