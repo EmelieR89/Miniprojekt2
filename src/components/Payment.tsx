@@ -1,4 +1,10 @@
-import React, { Component, useEffect, useState, useContext, CSSProperties } from "react";
+import React, {
+  Component,
+  useEffect,
+  useState,
+  useContext,
+  CSSProperties
+} from "react";
 import {
   Box,
   RadioButton,
@@ -25,32 +31,27 @@ export const Payment = (props: Props) => {
   const [cardnr, setCardNr] = useState("");
 
   const { userData } = useContext(UserDataContext);
-  const { cart, totalCost } = useContext(CartContext)
-  const { shippingData } = useContext(ShippingContext)
+  const { cart, totalCost } = useContext(CartContext);
+  const { shippingData } = useContext(ShippingContext);
 
- /*  const addTotalCostCartAndShipping = () => {
-    const sum = cart.reduce((total, itemproduct) => {
-      return total + itemproduct.product.price * itemproduct.count;
-    }, 0);
-    setTotalCost(sum);
-  }; */
-const disableButton = () => {
-  console.log('heejje');
-  return(
-    <Button
+  const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
+
+  const disableButton = () => {
+    console.log("heejje");
+    return (
+      <Button
         name="submit"
         type="submit"
         label="Submit"
-        disabled={true}>
-    </Button>
-  
-  )
-}
+        disabled={true}
+      ></Button>
+    );
+  };
 
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box fill={true} style={sammanfattning}>
+        <Box>
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -210,50 +211,52 @@ const disableButton = () => {
             </Box>
           )}
           <Box direction="row">
-          totalkostnad: {totalCost}
-          <Link to="/beställningsbekräftelse">
-            <Button
-              margin="medium"
-              type="submit"
-              label="Submit"
-              primary={true}
-              color="buttons"
-              onClick={() => {
-                disableButton()
-              }}
-            />
-          </Link>
+            totalkostnad: {totalCost}
+            <Link to="/beställningsbekräftelse">
+              <Button
+                margin="medium"
+                type="submit"
+                label="Submit"
+                primary={true}
+                color="buttons"
+                onClick={() => {
+                  disableButton();
+                }}
+              />
+            </Link>
           </Box>
           <Box>
             {cart.map(item => (
-            <Box
-              width="small"
-              height="small"
-              margin="small"
-              elevation="medium"
-              responsive
-            >
-              <Text>
-                {item.product.title + "   "}
-                {item.product.price + " :- /st"}
-              </Text>
+              <Box
+                width="small"
+                height="small"
+                margin="small"
+                elevation="medium"
+                responsive
+              >
+                <Text>
+                  {item.product.title + "   "}
+                  {item.product.price + " :- /st"}
+                </Text>
 
-              <Image src={item.product.mainImg} fit="cover" />
-              <div>
-                <Text>Antal: {item.count}</Text>
-              </div>
-            </Box>
-          ))}
-          </Box>
-              <Box>
-                {shippingData.selectedShipping}
+                <Image src={item.product.mainImg} fit="cover" />
+                <div>
+                  <Text>Antal: {item.count}</Text>
+                </div>
               </Box>
+            ))}
+          </Box>
+          <Box>
+            <Paragraph>
+              Total kostnad produkter + frakt: {totalCostAllTogether} :-
+            </Paragraph>
+          </Box>
         </Box>
-     )}
+      )}
     </ResponsiveContext.Consumer>
   );
 };
 
 const sammanfattning: CSSProperties = {
-  display: "flex",
-}
+  display: "flex"
+};
