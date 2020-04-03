@@ -7,7 +7,10 @@ sedan lägga till produkten i kundvagnen om du så behagar. I hamburgemenyn kan 
 Du kommer då till en sida med information om företaget, och du kan se flera bilder genom att trycka dig framåt på bildkarusellen. Alla
 bilder på sidan är hämtade från unsplash. När du har valt de produkter du vill, kan du trycka dig vidare till kundvagnen, antingen via 
 hamburgemenyn eller direkt via ikonen uppe i högra hörnet. Du kommer då till utcheckningen. Där kan du se vilka produkter du har valt,
-justera om du vill ta bort eller lägga till någon, och sedan fylla i din information, betalningssätt och fraktsätt. 
+justera om du vill ta bort eller lägga till någon, och sedan fylla i din information, fraksätt och betalningssätt. När allt är klart och ifyllt trycker du på "genomför köp" och du får en bekräftelse. Din kundvagn rensas och du kan genomföra ett nytt köp. 
+
+Länk till sida:
+https://emelier89.github.io/Miniprojekt2/
 
 Vi har använt oss av designsystemet Grommet:
 https://v2.grommet.io/
