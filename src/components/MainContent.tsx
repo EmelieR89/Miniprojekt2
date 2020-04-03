@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Box, ResponsiveContext, grommet } from "grommet";
+import { Grid, Box, ResponsiveContext } from "grommet";
 import { Card } from "./Card";
 import { productData } from "./ProductData";
 
