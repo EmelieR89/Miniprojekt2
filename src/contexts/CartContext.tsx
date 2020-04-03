@@ -71,12 +71,7 @@ export const CartProvider = (props: Props) => {
     setCart([...cart, { product, count: 1 }]);
   };
 
-  const clearCart = () => {
-    let clearedCart: CartItem[] = [...cart]
-    clearedCart = []
-    setCart(clearedCart)
-    return
-  }
+  const clearCart = () => setCart([]);
 
   const removeFromCart = (product: Product) => {
     let removedCart: CartItem[] = [...cart];
