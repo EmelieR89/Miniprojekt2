@@ -25,14 +25,14 @@ export default function FraktForm() {
   }
 
   return (
-    <Form validate="blur" onSubmit={handleOnSubmit} >
-    <Box
-      responsive={true}
-      fill={true}
+      <Box fill={true}
       justify="center"
       alignContent="center"
-      wrap={true}
-    >
+      responsive={true}
+      wrap={true} >
+
+    <Form validate="blur" onSubmit={handleOnSubmit}>
+    <Box margin="small">
       <Text size="large" alignSelf="center">
         Var vänlig välj fraktsätt
       </Text>
@@ -65,6 +65,7 @@ export default function FraktForm() {
       ))}
         <Button type="submit" value="submit" label="Nästa" primary={true} color="buttons" />
     </Box>
-    </Form>
+ </Form>
+ </Box>
   );
 }

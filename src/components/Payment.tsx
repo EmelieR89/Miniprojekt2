@@ -37,7 +37,6 @@ export const Payment = (props: Props) => {
   const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
 
   const disableButton = () => {
-    console.log("heejje");
     return (
       <Button
         name="submit"
@@ -51,7 +50,7 @@ export const Payment = (props: Props) => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box>
+        <Box align="center">
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -210,8 +209,8 @@ export const Payment = (props: Props) => {
               <br />
             </Box>
           )}
-          <Box direction="row">
-          totalkostnad: {totalCost}:-
+          <Box align="center">
+          totalkostnad: {totalCostAllTogether}:-
           <Link to="/beställningsbekräftelse">
             <Button
               margin="medium"
@@ -245,11 +244,6 @@ export const Payment = (props: Props) => {
                 </div>
               </Box>
             ))}
-          </Box>
-          <Box>
-            <Paragraph>
-              Total kostnad produkter + frakt: {totalCostAllTogether} :-
-            </Paragraph>
           </Box>
         </Box>
       )}
