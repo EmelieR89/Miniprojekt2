@@ -25,7 +25,7 @@ export const Beställningsbekräftelse = () => {
         {/* {shippingData.selectedShipping} */}
       </Text>
       <Text>En sammanfattning av din order kan du se här: </Text>
-      <Box fill={true} alignContent="center" direction="row">
+      <Box fill={true} alignContent="center">
         {cart.map(item => (
           <Box
             width="small"
