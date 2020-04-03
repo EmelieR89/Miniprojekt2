@@ -1,26 +1,19 @@
-import {
-  Box,
-  Button,
-  RadioButton,
-  Text,
-} from "grommet";
+import { Box, Button, RadioButton, Text } from "grommet";
 import React, { useContext } from "react";
 import { FraktData } from "./FraktData";
 import { Link } from "react-router-dom";
 import { ShippingContext } from "../contexts/ShippingContext";
 
-
 export default function FraktForm() {
-    const { shippingData, setShipping } = useContext(ShippingContext)
+  const { shippingData, setShipping } = useContext(ShippingContext);
 
- const leveransDatum = (days: number) => {
+  const leveransDatum = (days: number) => {
     const date = new Date();
     date.setDate(date.getDate() + days);
     return date.toLocaleDateString();
   };
 
   const [selected, setSelected] = React.useState("Postnord");
-
 
   return (
     <Box
@@ -41,9 +34,9 @@ export default function FraktForm() {
             checked={selected === frakt.namn}
             label={frakt.namn}
             onChange={e => {
-              if(e.target.checked) {
-                setSelected(frakt.namn  )
-                setShipping(e.target.value as any)
+              if (e.target.checked) {
+                setSelected(frakt.namn);
+                setShipping(frakt as any);
               }
             }}
           ></RadioButton>
