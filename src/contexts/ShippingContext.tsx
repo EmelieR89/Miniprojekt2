@@ -1,39 +1,53 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
+import { FraktData } from "../components/FraktData";
 
 export const ShippingContext = React.createContext<Shipping>({
-    shippingData: {} as ShippingData,
-    setShipping: () => {},
+  shippingData: {} as ShippingData,
+  setShipping: () => {}
 });
 
 interface Props {
   children: React.ReactNode;
 }
-  
+
 interface ShippingData {
-    selectedShipping: string;
+  selectedShipping: FraktData;
 }
 
 interface Shipping {
-    shippingData: ShippingData;
-    setShipping: (selectedShipping: ShippingData) => void;
-
+  shippingData: ShippingData;
+  setShipping: (selectedShipping: FraktData) => void;
 }
 
 export function ShippingDataProvider(props: Props) {
   const [shippingData, setShippingData] = useState<ShippingData>({
-    selectedShipping: ""
-  })
+    selectedShipping: {
+      beskrivning: "",
+      days: NaN,
+      id: "",
+      namn: "",
+      pris: NaN
+    }
+  });
 
-  const setShipping = (selectedShipping: ShippingData) => {
-    
-    setShippingData(selectedShipping)
-  }
-  console.log(shippingData + "datan");
-  
-  return(
-    <ShippingContext.Provider value={{shippingData, setShipping}}>
+  const setShipping = (choosenShipment: FraktData) => {
+    console.log("SetShipp" + choosenShipment);
+
+    setShippingData({
+      selectedShipping: {
+        beskrivning: choosenShipment.beskrivning,
+        days: choosenShipment.days,
+        id: choosenShipment.id,
+        namn: choosenShipment.namn,
+        pris: choosenShipment.pris
+      }
+    });
+  };
+  console.log(shippingData.selectedShipping.pris + "datan");
+
+  return (
+    <ShippingContext.Provider value={{ shippingData, setShipping }}>
       {props.children}
     </ShippingContext.Provider>
-  )
-
+  );
 }

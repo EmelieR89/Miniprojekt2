@@ -11,46 +11,39 @@ export const CartPage = (props: Props) => {
   // console.log("Props fmor chartPage: " + props.product.id);
 
   return (
+    <Box fill={true} margin="medium">
+      {cart.map(item => (
+        <Box width="small" height="small" elevation="medium" responsive>
+          <Text>
+            {item.product.title + "   "}
+            {item.product.price + " :- /st"}
+          </Text>
 
-        <Box fill={true}>
-          {cart.map(item => (
-            <Box
-              width="small"
-              height="small"
-              margin="small"
-              elevation="medium"
-              responsive
-            >
-              <Text>
-                {item.product.title + "   "}
-                {item.product.price + " :- /st"}
-              </Text>
+          <Image src={item.product.mainImg} fit="cover" />
+          <div style={productBox}>
+            <Text>Antal: {item.count}</Text>
 
-              <Image src={item.product.mainImg} fit="cover" />
-              <div style={productBox}>
-                <Text>Antal: {item.count}</Text>
-
-                <Button
-                  label="Remove"
-                  onClick={() => removeFromCart(item.product)}
-                  color="buttons"
-                  size="small"
-                />
-              </div>
-            </Box>
-          ))}
-          <Box>
-            <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
-          </Box>
-          <Link to="/userdata">
             <Button
-              type="submit"
-              label="checka ut"
-              primary={true}
+              label="Remove"
+              onClick={() => removeFromCart(item.product)}
               color="buttons"
-            ></Button>
-          </Link>
+              size="small"
+            />
+          </div>
         </Box>
+      ))}
+      <Box>
+        <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
+      </Box>
+      <Link to="/userdata">
+        <Button
+          type="submit"
+          label="checka ut"
+          primary={true}
+          color="buttons"
+        ></Button>
+      </Link>
+    </Box>
   );
 };
 

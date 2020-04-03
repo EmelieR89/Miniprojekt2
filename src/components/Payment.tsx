@@ -16,8 +16,6 @@ import { Link } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
-import { resolve } from "dns";
-import { rejects } from "assert";
 
 interface Props {}
 
@@ -30,12 +28,8 @@ export const Payment = (props: Props) => {
   const { cart, totalCost } = useContext(CartContext);
   const { shippingData } = useContext(ShippingContext);
 
-  /*  const addTotalCostCartAndShipping = () => {
-    const sum = cart.reduce((total, itemproduct) => {
-      return total + itemproduct.product.price * itemproduct.count;
-    }, 0);
-    setTotalCost(sum);
-  }; */
+  const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
+
   const disableButton = () => {
     console.log("heejje");
     return (
@@ -51,7 +45,7 @@ export const Payment = (props: Props) => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box fill={true}>
+        <Box>
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -255,8 +249,9 @@ export const Payment = (props: Props) => {
             ))}
           </Box>
           <Box>
-            {totalCost}
-            {shippingData.selectedShipping}
+            <Paragraph>
+              Total kostnad produkter + frakt: {totalCostAllTogether} :-
+            </Paragraph>
           </Box>
         </Box>
       )}
