@@ -2,11 +2,7 @@ import React, { useContext } from "react";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { grommet, Text, Heading, Box, Paragraph, Image } from "grommet";
 import { CartContext } from "../contexts/CartContext";
-import { createWriteStream } from "fs";
-import {
-  ShippingContext,
-  ShippingDataProvider
-} from "../contexts/ShippingContext";
+import { ShippingContext } from "../contexts/ShippingContext";
 
 export const Beställningsbekräftelse = () => {
   const { totalCost, cart } = useContext(CartContext);

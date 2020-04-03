@@ -1,5 +1,5 @@
 {
-  "homepage": "http://{EmelieR89}.github.io/{Miniprojekt2}",
+  "homepage": "https://{EmelieR89}.github.io/{Miniprojekt2}",
   "name": "grommit-app",
   "version": "0.1.0",
   "private": true,
@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "gh": "^2.8.6"
+    "gh": "^2.8.6",
+    "gh-pages": "^2.2.0"
   }
 }
