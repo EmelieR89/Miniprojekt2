@@ -12,7 +12,39 @@ export const CartPage = (props: Props) => {
 
   if(cart.length >= 1) {
   return(
-    <Link to="/userdata">
+    <Box fill={true} flex="grow" align="center">
+    <Text margin="small" size="large">
+      Din kundvagn
+    </Text>
+    {cart.map(item => (
+      <Box
+        width="small"
+        height="small"
+        margin="small"
+        elevation="medium"
+        responsive
+      >
+        <Text>
+          {item.product.title + "   "}
+          {item.product.price + " :- /st"}
+        </Text>
+
+        <Image src={item.product.mainImg} fit="cover" />
+        <div style={productBox}>
+          <Text>Antal: {item.count}</Text>
+
+          <Button
+            label="Remove"
+            onClick={() => removeFromCart(item.product)}
+            color="buttons"
+            size="small"
+          />
+        </div>
+      </Box>
+    ))}
+    <Box wrap={true}>
+      <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
+      <Link to="/userdata">
         <Button
       type="submit"
       label="Nästa"
@@ -20,6 +52,9 @@ export const CartPage = (props: Props) => {
       color="buttons"
     ></Button>
     </Link>
+    </Box>
+  </Box>
+   
   )    
   }
 
