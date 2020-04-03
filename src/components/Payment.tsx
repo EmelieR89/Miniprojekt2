@@ -18,7 +18,7 @@ import {
   ResponsiveContext,
   Image
 } from "grommet";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
@@ -31,25 +31,20 @@ export const Payment = (props: Props) => {
   const [date, setDate] = useState("");
   const [cardnr, setCardNr] = useState("");
   const [isLoading, setLoading] = useState(false)
+  const [isComplete, setComplete] = useState(false)
 
   const { userData } = useContext(UserDataContext);
-  const { cart, totalCost, clearCart } = useContext(CartContext);
+  const { cart, totalCost } = useContext(CartContext);
   const { shippingData } = useContext(ShippingContext);
 
-  const history = useHistory();
 
   const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
 
-  const disableButton = () => {
-    return (
-      <Button
-        name="submit"
-        type="submit"
-        label="Submit"
-        disabled={true}
-      ></Button>
-    );
-  };
+
+
+  if (isComplete) {
+    return <Redirect to="/beställningsbekräftelse" />
+  }
 
   return (
     <ResponsiveContext.Consumer>
@@ -225,9 +220,9 @@ export const Payment = (props: Props) => {
               color="buttons"
               onClick={() => {
                 setLoading(true)
-                CreateOrder("data").then(resolve => {
-                  history.push("/beställningsbekräftelse")
-                  clearCart();                  
+                // TODO: sen all info to create order...
+                CreateOrder(cart, /* userData, selectedShipping, selectedPayment */).then(resolve => {
+                  setComplete(true)                
                 })
               }}
             />

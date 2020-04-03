@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { grommet, Text, Heading, Box, Paragraph, Image, ResponsiveContext } from "grommet";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
 
 export const Beställningsbekräftelse = () => {
-  const { totalCost, cart } = useContext(CartContext);
+  const { totalCost, cart, clearCart } = useContext(CartContext);
   const { setShipping, shippingData } = useContext(ShippingContext);
-
   const { userData } = useContext(UserDataContext);
+  
+  // Save to local state so we can clear the cart context
+  const [ totalCostSaved ] = useState(totalCost);
+  const [ cartSaved ] = useState(cart);
 
-  const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
+
+  const totalCostAllTogether = shippingData.selectedShipping.pris + totalCostSaved;
   
   
   const leveransDatum = (days: number) => {
@@ -21,6 +25,11 @@ export const Beställningsbekräftelse = () => {
   const ordernr = (max: number) => {
     return Math.floor(Math.random() * Math.floor(max));
   };
+
+  // ComponentDidMount equivialent
+  useEffect(() => {
+    clearCart();
+  }, [])
 
   return (
     <ResponsiveContext.Consumer>
@@ -36,7 +45,7 @@ export const Beställningsbekräftelse = () => {
       </Text>
       <Text size={size==="xsmall" ? "small": "medium"}>En sammanfattning av din order kan du se här: </Text>
       <Box fill={true} align="center">
-        {cart.map(item => (
+        {cartSaved.map(item => (
           <Box
             width="small"
             height="small"
