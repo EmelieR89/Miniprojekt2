@@ -1,7 +1,7 @@
-import { Box, Button, RadioButton, Text } from "grommet";
-import React, { useContext } from "react";
+import { Box, Button, RadioButton, Text, Form } from "grommet";
+import React, { useContext, useState } from "react";
 import { FraktData } from "./FraktData";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ShippingContext } from "../contexts/ShippingContext";
 
 export default function FraktForm() {
@@ -13,9 +13,19 @@ export default function FraktForm() {
     return date.toLocaleDateString();
   };
 
-  const [selected, setSelected] = React.useState("Postnord");
+  const [selected, setSelected] = React.useState("");
+
+  const [gotToNextStep, setgoToNextStep] = useState(false);
+  function handleOnSubmit() {
+    setgoToNextStep(true);
+  }
+
+  if (gotToNextStep) {
+    return <Redirect to="/payment" />;
+  }
 
   return (
+    <Form validate="blur" onSubmit={handleOnSubmit} >
     <Box
       responsive={true}
       fill={true}
@@ -46,16 +56,15 @@ export default function FraktForm() {
           </Box>
 
           <Box direction="row" gap="small">
-            <Text>Pris: {frakt.pris}</Text>
+            <Text>Pris: {frakt.pris} :-</Text>
           </Box>
           <Box direction="row" gap="small">
             <Text>Leveransdatum: {leveransDatum(frakt.days)}</Text>
           </Box>
         </Box>
       ))}
-      <Link to="/payment">
-        <Button type="submit" label="Submit" primary={true} color="buttons" />
-      </Link>
+        <Button type="submit" value="submit" label="Nästa" primary={true} color="buttons" />
     </Box>
+    </Form>
   );
 }

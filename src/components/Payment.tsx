@@ -211,19 +211,19 @@ export const Payment = (props: Props) => {
             </Box>
           )}
           <Box direction="row">
-            totalkostnad: {totalCost}
-            <Link to="/beställningsbekräftelse">
-              <Button
-                margin="medium"
-                type="submit"
-                label="Submit"
-                primary={true}
-                color="buttons"
-                onClick={() => {
-                  disableButton();
-                }}
-              />
-            </Link>
+          totalkostnad: {totalCost}:-
+          <Link to="/beställningsbekräftelse">
+            <Button
+              margin="medium"
+              type="submit"
+              label="Bekräfta köp"
+              primary={true}
+              color="buttons"
+              onClick={() => {
+                disableButton()
+              }}
+            />
+          </Link>
           </Box>
           <Box>
             {cart.map(item => (
