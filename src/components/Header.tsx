@@ -1,4 +1,4 @@
-import React, { CSSProperties, useContext } from "react";
+import React, { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -16,7 +16,6 @@ import { CartContext } from "../contexts/CartContext";
 interface Props {}
 
 export function Header(props: Props) {
-  const { itemCounter } = useContext(CartContext);
   return (
     <ResponsiveContext.Consumer>
       {size => (

@@ -14,6 +14,7 @@ import { Payment } from "./components/Payment";
 import { Beställningsbekräftelse } from "./components/Beställningsbekräftelse";
 import { UserDataProvider } from "./contexts/UserDataContext";
 import { ShippingDataProvider } from "./contexts/ShippingContext";
+import "./index.css"
 
 const theme = {
   global: {

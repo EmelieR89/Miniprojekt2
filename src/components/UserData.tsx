@@ -24,7 +24,7 @@ export default function UserData() {
   }
 
   return (
-    <Box align="center" responsive={true} fill={true} justify="center">
+    <Box style={{margin: "0.5rem"}} align="center" responsive={true} fill={true} justify="center">
       <Form validate="submit" onSubmit={handleOnSubmit}>
         <FormField
           name="name"
@@ -80,7 +80,7 @@ export default function UserData() {
 
         <FormField
           label="Mail"
-          name="mail"
+          name="email"
           value={userData.email}
           onChange={e => setEmail(e.target.value)}
           type="email"
@@ -91,7 +91,7 @@ export default function UserData() {
           value="submit"
           fill="horizontal"
           type="submit"
-          label="Submit"
+          label="Nästa"
           primary={true}
           color="buttons"
         />

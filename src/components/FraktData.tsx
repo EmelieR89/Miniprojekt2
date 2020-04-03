@@ -1,7 +1,3 @@
-import Image1 from "../assets/Postnord.png" 
-import Image2 from "../assets/DHL.png"
-import React, { Component } from 'react';
-
 export interface FraktData {
     namn: string
     id: string
