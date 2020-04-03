@@ -8,7 +8,7 @@ export default function UserData() {
 
   return (
     <Box align="center" responsive={true} fill={true} justify="center">
-      <Form validate="blur">
+      <Form>
         <FormField
           name="name"
           label="Namn"
@@ -69,15 +69,18 @@ export default function UserData() {
         type="email" 
         required={true} />
 
-        <Link to="/fraktform">
-          <Button
+          <Link to="/FraktForm">
+          <Button 
+            value="submit"
             fill="horizontal"
             type="submit"
             label="Submit"
             primary={true}
             color="buttons"
           />
-        </Link>
+          </Link>
+        
+    
       </Form>
     </Box>
   );

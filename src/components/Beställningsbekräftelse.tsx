@@ -7,7 +7,7 @@ import { ShippingContext, ShippingDataProvider } from "../contexts/ShippingConte
 
 export const Beställningsbekräftelse = () => {
   const { totalCost, cart } = useContext(CartContext);
-  const {setShipping} = useContext(ShippingContext)
+  const {setShipping, shippingData} = useContext(ShippingContext)
 
 const ordernr = (max: number)  => {
   return (
@@ -16,16 +16,14 @@ const ordernr = (max: number)  => {
 }
   
   return(
-    <Box align="center" fill={true}>
+    <Box align="center" fill={true} gap="small">
       <Heading>Tack för din order!</Heading>
           <Text>Ditt ordernr är: {ordernr(2839873)} </Text>
-          <Paragraph>
-            Den totala summan på din order blev: {totalCost}
-            {setShipping}
-
+          <Text>Den totala summan på din order blev: {totalCost}</Text>
             {/* här vill vi hämta det vi har köpt, vad det kostade, och när det ska levereras */}
-          </Paragraph>
-          <Box fill={true}>
+          <Text>Din order kommer att finnas tillhanda den: {shippingData.selectedShipping}</Text>
+          <Text>En sammanfattning av din order kan du se här: </Text>
+          <Box fill={true} alignContent="center" direction="row">
           {cart.map(item => (
             <Box
               width="small"
@@ -39,10 +37,11 @@ const ordernr = (max: number)  => {
                 {item.product.price + " :- /st"}
               </Text>
 
-              <Image src={item.product.mainImg} fit="cover"/>
-              <div>
+              
+              <Box>
                 <Text>Antal: {item.count}</Text>
-              </div>
+                <Image src={item.product.mainImg} fit="cover"/>
+              </Box>
             </Box>
           ))}
           

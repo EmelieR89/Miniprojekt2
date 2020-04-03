@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { Component, useEffect, useState, useContext, CSSProperties } from "react";
 import {
   Box,
   RadioButton,
@@ -50,7 +50,7 @@ const disableButton = () => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <Box fill={true}>
+        <Box fill={true} style={sammanfattning}>
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
@@ -207,30 +207,23 @@ const disableButton = () => {
                 ]}
               />
               <br />
-              <Link to="/Beställningsbekräftelse">
-                <Button
-                  name="submit"
-                  focusIndicator={true}
-                  type="submit"
-                  label="Submit"
-                  primary={true}
-                  color="buttons"
-                  onClick={() => {
-                    disableButton()
-                  }}
-                />
-              </Link>
             </Box>
           )}
+          <Box direction="row">
+          totalkostnad: {totalCost}
           <Link to="/beställningsbekräftelse">
             <Button
-            margin="medium"
+              margin="medium"
               type="submit"
               label="Submit"
               primary={true}
               color="buttons"
+              onClick={() => {
+                disableButton()
+              }}
             />
           </Link>
+          </Box>
           <Box>
             {cart.map(item => (
             <Box
@@ -253,7 +246,6 @@ const disableButton = () => {
           ))}
           </Box>
               <Box>
-                {totalCost}
                 {shippingData.selectedShipping}
               </Box>
         </Box>
@@ -261,3 +253,7 @@ const disableButton = () => {
     </ResponsiveContext.Consumer>
   );
 };
+
+const sammanfattning: CSSProperties = {
+  display: "flex",
+}

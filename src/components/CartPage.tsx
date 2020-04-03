@@ -1,6 +1,6 @@
 import React, { Component, CSSProperties, useContext, useState } from "react";
 import { RouteComponentProps, Link } from "react-router-dom";
-import { Box, Button, Text, Image, Paragraph } from "grommet";
+import { Box, Button, Text, Image, Paragraph, Heading } from "grommet";
 import { CartContext } from "../contexts/CartContext";
 
 interface Props extends RouteComponentProps<{ id: string }> {}
@@ -12,7 +12,8 @@ export const CartPage = (props: Props) => {
 
   return (
 
-        <Box fill={true}>
+        <Box fill={true} flex="grow" align="center">
+          <Text margin="small" size="large">Din kundvagn</Text>
           {cart.map(item => (
             <Box
               width="small"
@@ -39,18 +40,20 @@ export const CartPage = (props: Props) => {
               </div>
             </Box>
           ))}
-          <Box>
+        <Box wrap={true}>
             <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
-          </Box>
           <Link to="/userdata">
-            <Button
+            <Button 
               type="submit"
               label="checka ut"
               primary={true}
               color="buttons"
             ></Button>
           </Link>
+          </Box>
+        
         </Box>
+         
   );
 };
 
