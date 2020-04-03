@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
+import { resolve } from "dns";
+import { rejects } from "assert";
 
 interface Props {}
 
@@ -25,27 +27,26 @@ export const Payment = (props: Props) => {
   const [cardnr, setCardNr] = useState("");
 
   const { userData } = useContext(UserDataContext);
-  const { cart, totalCost } = useContext(CartContext)
-  const { shippingData } = useContext(ShippingContext)
+  const { cart, totalCost } = useContext(CartContext);
+  const { shippingData } = useContext(ShippingContext);
 
- /*  const addTotalCostCartAndShipping = () => {
+  /*  const addTotalCostCartAndShipping = () => {
     const sum = cart.reduce((total, itemproduct) => {
       return total + itemproduct.product.price * itemproduct.count;
     }, 0);
     setTotalCost(sum);
   }; */
-const disableButton = () => {
-  console.log('heejje');
-  return(
-    <Button
+  const disableButton = () => {
+    console.log("heejje");
+    return (
+      <Button
         name="submit"
         type="submit"
         label="Submit"
-        disabled={true}>
-    </Button>
-  
-  )
-}
+        disabled={true}
+      ></Button>
+    );
+  };
 
   return (
     <ResponsiveContext.Consumer>
@@ -216,7 +217,7 @@ const disableButton = () => {
                   primary={true}
                   color="buttons"
                   onClick={() => {
-                    disableButton()
+                    disableButton();
                   }}
                 />
               </Link>
@@ -224,40 +225,41 @@ const disableButton = () => {
           )}
           <Link to="/beställningsbekräftelse">
             <Button
-            margin="medium"
+              margin="medium"
               type="submit"
               label="Submit"
               primary={true}
               color="buttons"
+              // onClick={() => promise1()}
             />
           </Link>
           <Box>
             {cart.map(item => (
-            <Box
-              width="small"
-              height="small"
-              margin="small"
-              elevation="medium"
-              responsive
-            >
-              <Text>
-                {item.product.title + "   "}
-                {item.product.price + " :- /st"}
-              </Text>
+              <Box
+                width="small"
+                height="small"
+                margin="small"
+                elevation="medium"
+                responsive
+              >
+                <Text>
+                  {item.product.title + "   "}
+                  {item.product.price + " :- /st"}
+                </Text>
 
-              <Image src={item.product.mainImg} fit="cover" />
-              <div>
-                <Text>Antal: {item.count}</Text>
-              </div>
-            </Box>
-          ))}
-          </Box>
-              <Box>
-                {totalCost}
-                {shippingData.selectedShipping}
+                <Image src={item.product.mainImg} fit="cover" />
+                <div>
+                  <Text>Antal: {item.count}</Text>
+                </div>
               </Box>
+            ))}
+          </Box>
+          <Box>
+            {totalCost}
+            {shippingData.selectedShipping}
+          </Box>
         </Box>
-     )}
+      )}
     </ResponsiveContext.Consumer>
   );
 };
