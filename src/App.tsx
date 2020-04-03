@@ -19,14 +19,14 @@ const theme = {
   global: {
     breakpoints: {
       xsmall: {
-        value: 500,
+        value: 500
       },
       small: {
-        value: 900,
+        value: 900
       },
       medium: {
         value: 1000
-      },
+      }
     },
     focus: {
       border: {
@@ -51,7 +51,7 @@ const theme = {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Miniprojekt2">
       <ShippingDataProvider>
         <UserDataProvider>
           <CartProvider>
