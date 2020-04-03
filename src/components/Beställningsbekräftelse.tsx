@@ -14,14 +14,6 @@ export const Beställningsbekräftelse = () => {
 
   const { userData } = useContext(UserDataContext);
 
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Din order gick igenom");
-    }, 3000);
-  });
-
-  promise.then(result => alert(result));
-
   const ordernr = (max: number) => {
     return Math.floor(Math.random() * Math.floor(max));
   };

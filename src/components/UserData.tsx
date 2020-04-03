@@ -1,14 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Form, FormField, Button } from "grommet";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 
 export default function UserData() {
-  const { userData, setName, setEmail, setAddress, setTelefon, setCity, setZipCode } = useContext(UserDataContext);
+  const {
+    userData,
+    setName,
+    setEmail,
+    setAddress,
+    setTelefon,
+    setCity,
+    setZipCode
+  } = useContext(UserDataContext);
+
+  const [gotToNextStep, setgoToNextStep] = useState(false);
+  function handleOnSubmit() {
+    setgoToNextStep(true);
+  }
+
+  if (gotToNextStep) {
+    return <Redirect to="/fraktform" />;
+  }
 
   return (
     <Box align="center" responsive={true} fill={true} justify="center">
-      <Form>
+      <Form validate="submit" onSubmit={handleOnSubmit}>
         <FormField
           name="name"
           label="Namn"
@@ -52,35 +69,32 @@ export default function UserData() {
           }}
         />
 
-        <FormField 
-          label="Stad" 
-          name="City" 
+        <FormField
+          label="Stad"
+          name="City"
           value={userData.city}
           onChange={e => setCity(e.target.value)}
           required={true}
           validate={{ regexp: /^[a-öA-ö]/, message: "Använd bokstäver" }}
-          />
+        />
 
-        <FormField 
-        label="Mail"
-        name="mail" 
-        value={userData.email}
-        onChange={e => setEmail(e.target.value)}
-        type="email" 
-        required={true} />
+        <FormField
+          label="Mail"
+          name="mail"
+          value={userData.email}
+          onChange={e => setEmail(e.target.value)}
+          type="email"
+          required={true}
+        />
 
-          <Link to="/FraktForm">
-          <Button 
-            value="submit"
-            fill="horizontal"
-            type="submit"
-            label="Submit"
-            primary={true}
-            color="buttons"
-          />
-          </Link>
-        
-    
+        <Button
+          value="submit"
+          fill="horizontal"
+          type="submit"
+          label="Submit"
+          primary={true}
+          color="buttons"
+        />
       </Form>
     </Box>
   );
