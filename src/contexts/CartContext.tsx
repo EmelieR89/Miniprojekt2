@@ -5,7 +5,7 @@ export const CartContext = React.createContext<Cart>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
-  // countNumberOfItems: () => {},
+  clearCart: () => {},
   itemCounter: 0,
   totalCost: 0
 });
@@ -23,7 +23,8 @@ interface Cart {
   cart: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (product: Product) => void;
-  //countNumberOfItems: () => void;
+  clearCart: () => void;
+
   itemCounter: number;
   totalCost: number;
 }
@@ -70,6 +71,13 @@ export const CartProvider = (props: Props) => {
     setCart([...cart, { product, count: 1 }]);
   };
 
+  const clearCart = () => {
+    let clearedCart: CartItem[] = [...cart]
+    clearedCart = []
+    setCart(clearedCart)
+    return
+  }
+
   const removeFromCart = (product: Product) => {
     let removedCart: CartItem[] = [...cart];
 
@@ -90,7 +98,7 @@ export const CartProvider = (props: Props) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, itemCounter, totalCost }}
+      value={{ cart, addToCart, removeFromCart, itemCounter, totalCost, clearCart }}
     >
       {props.children}
     </CartContext.Provider>

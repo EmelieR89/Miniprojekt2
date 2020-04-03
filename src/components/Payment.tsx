@@ -18,10 +18,11 @@ import {
   ResponsiveContext,
   Image
 } from "grommet";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
 import { ShippingContext } from "../contexts/ShippingContext";
+import { CreateOrder } from "../MockedAPI";
 
 interface Props {}
 
@@ -29,10 +30,13 @@ export const Payment = (props: Props) => {
   const [value, setValue] = useState("Faktura");
   const [date, setDate] = useState("");
   const [cardnr, setCardNr] = useState("");
+  const [isLoading, setLoading] = useState(false)
 
   const { userData } = useContext(UserDataContext);
-  const { cart, totalCost } = useContext(CartContext);
+  const { cart, totalCost, clearCart } = useContext(CartContext);
   const { shippingData } = useContext(ShippingContext);
+
+  const history = useHistory();
 
   const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
 
@@ -211,18 +215,22 @@ export const Payment = (props: Props) => {
           )}
           <Box align="center">
           totalkostnad: {totalCostAllTogether}:-
-          <Link to="/beställningsbekräftelse">
+          
             <Button
               margin="medium"
               type="submit"
               label="Bekräfta köp"
               primary={true}
+              disabled={isLoading}
               color="buttons"
               onClick={() => {
-                disableButton()
+                setLoading(true)
+                CreateOrder("data").then(resolve => {
+                  history.push("/beställningsbekräftelse")
+                  clearCart();                  
+                })
               }}
             />
-          </Link>
           </Box>
           <Box>
             {cart.map(item => (

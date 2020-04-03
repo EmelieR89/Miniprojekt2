@@ -10,98 +10,59 @@ export const CartPage = (props: Props) => {
 
   // console.log("Props fmor chartPage: " + props.product.id);
 
-  if(cart.length >= 1) {
-  return(
-    <Box flex="grow" align="center">
-    <Text margin="small" size="large">
-      Din kundvagn
-    </Text>
-    {cart.map(item => (
-      <Box
-        width="small"
-        height="small"
-        margin="small"
-        elevation="medium"
-        responsive
-      >
-        <Text>
-          {item.product.title + "   "}
-          {item.product.price + " :- /st"}
+  if (cart.length >= 1) {
+    return (
+      <Box flex="grow" align="center">
+        <Text margin="small" size="large">
+          Din kundvagn
         </Text>
+        {cart.map(item => (
+          <Box
+            width="small"
+            height="small"
+            margin="small"
+            elevation="medium"
+            responsive
+          >
+            <Text>
+              {item.product.title + "   "}
+              {item.product.price + " :- /st"}
+            </Text>
 
-        <Image src={item.product.mainImg} fit="cover" />
-        <div style={productBox}>
-          <Text>Antal: {item.count}</Text>
+            <Image src={item.product.mainImg} fit="cover" />
+            <div style={productBox}>
+              <Text>Antal: {item.count}</Text>
 
-          <Button
-            label="Remove"
-            onClick={() => removeFromCart(item.product)}
-            color="buttons"
-            size="small"
-          />
-        </div>
-      </Box>
-    ))}
-    <Box wrap={true}>
-      <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
-      <Link to="/userdata">
-        <Button
-      type="submit"
-      label="Nästa"
-      primary={true}
-      color="buttons"
-    ></Button>
-    </Link>
-    </Box>
-  </Box>
-   
-  )    
-  }
-
-  return (
-
-        <Box fill={true} flex="grow" align="center">
-          <Text margin="small" size="large">Din kundvagn</Text>
-          {cart.map(item => (
-            <Box
-              width="small"
-              height="small"
-              margin="small"
-              elevation="medium"
-              responsive
-            >
-              <Text>
-                {item.product.title + "   "}
-                {item.product.price + " :- /st"}
-              </Text>
-
-              <Image src={item.product.mainImg} fit="cover" />
-              <div style={productBox}>
-                <Text>Antal: {item.count}</Text>
-
-                <Button
-                  label="Remove"
-                  onClick={() => removeFromCart(item.product)}
-                  color="buttons"
-                  size="small"
-                />
-              </div>
-            </Box>
-          ))}
+              <Button
+                label="Remove"
+                onClick={() => removeFromCart(item.product)}
+                color="buttons"
+                size="small"
+              />
+            </div>
+          </Box>
+        ))}
         <Box wrap={true}>
-            <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
+          <Paragraph>Totalbelopp: {totalCost + ":-"} </Paragraph>
           <Link to="/userdata">
-            <Button 
+            <Button
               type="submit"
-              label="checka ut"
+              label="Nästa"
               primary={true}
               color="buttons"
             ></Button>
           </Link>
-          </Box>
-        
         </Box>
-         
+      </Box>
+    );
+  }
+
+  return (
+    <Box fill={true} flex="grow" align="center">
+      <Text margin="small" size="large">
+        Din kundvagn
+      </Text>
+    </Box>
   );
 };
 
