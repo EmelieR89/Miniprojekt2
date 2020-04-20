@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  CSSProperties
-} from "react";
+import React, { useState, useContext, CSSProperties } from "react";
 import {
   Box,
   Text,
@@ -12,8 +8,9 @@ import {
   Button,
   MaskedInput,
   ResponsiveContext,
-  Image
+  Image,
 } from "grommet";
+import { Checkbox, CheckboxSelected } from "grommet-icons";
 import { Redirect } from "react-router-dom";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { CartContext } from "../contexts/CartContext";
@@ -25,33 +22,31 @@ interface Props {}
 export const Payment = (props: Props) => {
   const [value, setValue] = useState("Faktura");
   const [date, setDate] = useState("");
+  const [cvc, setCvc] = useState("");
   const [cardnr, setCardNr] = useState("");
-  const [isLoading, setLoading] = useState(false)
-  const [isComplete, setComplete] = useState(false)
+  const [isLoading, setLoading] = useState(false);
+  const [isComplete, setComplete] = useState(false);
 
   const { userData } = useContext(UserDataContext);
   const { cart, totalCost } = useContext(CartContext);
   const { shippingData } = useContext(ShippingContext);
 
-
   const totalCostAllTogether = shippingData.selectedShipping.pris + totalCost;
 
-
-
   if (isComplete) {
-    return <Redirect to="/beställningsbekräftelse" />
+    return <Redirect to="/beställningsbekräftelse" />;
   }
 
   return (
     <ResponsiveContext.Consumer>
-      {size => (
-        <Box style={flexStyle}align="center">
+      {(size) => (
+        <Box style={flexStyle} align="center">
           <RadioButtonGroup
             margin="medium"
             name="betalningssätt"
             options={["Faktura", "Swish", "Kort"]}
             value={value}
-            onChange={event => setValue(event.target.value)}
+            onChange={(event) => setValue(event.target.value)}
           />
           {value === "Faktura" && (
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
@@ -78,7 +73,7 @@ export const Payment = (props: Props) => {
                   required={true}
                   validate={{
                     regexp: /^[0-9+-]{0,15}$/,
-                    message: "Använd siffror mellan 0-9"
+                    message: "Använd siffror mellan 0-9",
                   }}
                 />
                 <br />
@@ -87,7 +82,7 @@ export const Payment = (props: Props) => {
           )}
           {value === "Kort" && (
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
-              <Form validate="blur">
+              <Form validate="submit">
                 <Text size={size === "xsmall" ? "small" : "medium"}>Namn</Text>
                 <FormField
                   name="cc-name"
@@ -98,7 +93,7 @@ export const Payment = (props: Props) => {
                   type="text"
                   validate={{
                     regexp: /^[a-öA-Ö]/,
-                    message: "Använd bokstäver"
+                    message: "Använd bokstäver",
                   }}
                 />
               </Form>
@@ -107,6 +102,7 @@ export const Payment = (props: Props) => {
                 Giltighetsdatum
               </Text>
               <MaskedInput
+                required={true}
                 name="cc-exp"
                 autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
@@ -125,10 +121,10 @@ export const Payment = (props: Props) => {
                       "9",
                       "10",
                       "11",
-                      "12"
+                      "12",
                     ],
                     regexp: /^1[1-2]$|^[0-9]$/,
-                    placeholder: "mm"
+                    placeholder: "mm",
                   },
                   { fixed: "/" },
                   {
@@ -140,21 +136,24 @@ export const Payment = (props: Props) => {
                       "2023",
                       "2024",
                       "2025",
-                      "2026"
+                      "2026",
                     ],
                     regexp: /^[0-2][0-9]$|^[0-9]$/,
-                    placeholder: "yy"
-                  }
+                    placeholder: "yy",
+                  },
                 ]}
                 value={date}
-                onChange={event => setDate(event.target.value)}
+                onChange={(event) => setDate(event.target.value)}
               />
+              {date.length === (6 || 7) ? <CheckboxSelected /> : ""}
+
               <br />
 
               <Text size={size === "xsmall" ? "small" : "medium"}>
                 Kortnummer
               </Text>
               <MaskedInput
+                required={true}
                 name="cc-number"
                 autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
@@ -162,34 +161,37 @@ export const Payment = (props: Props) => {
                   {
                     length: 4,
                     regexp: /^[0-9]{1,4}$/,
-                    placeholder: "xxxx"
+                    placeholder: "xxxx",
                   },
                   { fixed: " " },
                   {
                     length: 4,
                     regexp: /^[0-9]{1,4}$/,
-                    placeholder: "xxxx"
+                    placeholder: "xxxx",
                   },
                   { fixed: " " },
                   {
                     length: 4,
                     regexp: /^[0-9]{1,4}$/,
-                    placeholder: "xxxx"
+                    placeholder: "xxxx",
                   },
                   { fixed: " " },
                   {
                     length: 4,
                     regexp: /^[0-9]{1,4}$/,
-                    placeholder: "xxxx"
-                  }
+                    placeholder: "xxxx",
+                  },
                 ]}
                 value={cardnr}
-                onChange={event => setCardNr(event.target.value)}
+                onChange={(event) => setCardNr(event.target.value)}
               />
+              {cardnr.length === 19 ? <CheckboxSelected /> : ""}
+
               <br />
               <Text size={size === "xsmall" ? "small" : "medium"}>CVC</Text>
 
               <MaskedInput
+                required={true}
                 name="cc-csc"
                 autoComplete="on"
                 size={size === "xsmall" ? "small" : "medium"}
@@ -197,33 +199,47 @@ export const Payment = (props: Props) => {
                   {
                     length: 3,
                     regexp: /^[0-9]{1,3}$/,
-                    placeholder: "xxx"
-                  }
+                    placeholder: "xxx",
+                  },
                 ]}
+                value={cvc}
+                onChange={(event) => setCvc(event.target.value)}
               />
+              {cvc.length === 3 ? <CheckboxSelected /> : ""}
               <br />
             </Box>
           )}
           <Box align="center">
-          totalkostnad: {totalCostAllTogether}:-
-          
+            totalkostnad: {totalCostAllTogether}:-
             <Button
               margin="medium"
               type="submit"
+              value="submit"
               label="Bekräfta köp"
               primary={true}
               disabled={isLoading}
               color="buttons"
               onClick={() => {
-                setLoading(true)
-                CreateOrder(cart, userData, shippingData.selectedShipping).then(resolve => {
-                  setComplete(true)                
-                })
+                if (
+                  cvc.length === 3 &&
+                  userData.name &&
+                  date.length === (6 || 7) &&
+                  cardnr.length === 19
+                ) {
+                  setLoading(true);
+                  CreateOrder(
+                    cart,
+                    userData,
+                    shippingData.selectedShipping
+                  ).then((resolve) => {
+                    setComplete(true);
+                  });
+                }
               }}
             />
           </Box>
           <Box>
-            {cart.map(item => (
+            {cart.map((item) => (
               <Box
                 width="small"
                 height="small"
@@ -252,6 +268,5 @@ export const Payment = (props: Props) => {
 const flexStyle: CSSProperties = {
   display: "flex",
   flexGrow: 1,
-  minHeight: "90%"
-}
-
+  minHeight: "90%",
+};
