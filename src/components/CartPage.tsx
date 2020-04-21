@@ -7,7 +7,7 @@ import "../index.css"
 interface Props extends RouteComponentProps<{ id: string }> {}
 
 export const CartPage = (props: Props) => {
-  const { removeFromCart, totalCost, cart } = useContext(CartContext);
+  const { removeFromCart, addToCart, totalCost, cart } = useContext(CartContext);
 
   
   if (cart.length >= 1) {
@@ -34,8 +34,14 @@ export const CartPage = (props: Props) => {
               <Text>Antal: {item.count}</Text>
 
               <Button
-                label="Remove"
+                label="-"
                 onClick={() => removeFromCart(item.product)}
+                color="buttons"
+                size="small"
+              />
+              <Button
+                label="+"
+                onClick={() => addToCart(item.product)}
                 color="buttons"
                 size="small"
               />

@@ -32,7 +32,7 @@ export default function FraktForm() {
       wrap={true} 
       >
 
-    <Form validate="blur" onSubmit={handleOnSubmit}>
+    <Form validate="submit" onSubmit={handleOnSubmit}>
     <Box margin="small">
       <Text size="large" alignSelf="center">
         Var vänlig välj fraktsätt
@@ -43,6 +43,7 @@ export default function FraktForm() {
             name="shippingmethod"
             value={frakt.namn}
             checked={selected === frakt.namn}
+            required={true}
             label={frakt.namn}
             onChange={e => {
               if (e.target.checked) {
