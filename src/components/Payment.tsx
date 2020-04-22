@@ -40,6 +40,7 @@ export const Payment = (props: Props) => {
   return (
     <ResponsiveContext.Consumer>
       {(size) => (
+
         <Box style={flexStyle} align="center">
           <RadioButtonGroup
             margin="medium"
@@ -50,7 +51,17 @@ export const Payment = (props: Props) => {
           />
           {value === "Faktura" && (
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
-              <Form>
+              <Form validate="submit" onSubmit={() => {
+                  setLoading(true);
+                  CreateOrder(
+                    cart,
+                    userData,
+                    shippingData.selectedShipping
+                  ).then((resolve) => {
+                    setComplete(true);
+                  });
+                }
+              }>
                 <FormField
                   name="email"
                   value={userData.email}
@@ -59,12 +70,31 @@ export const Payment = (props: Props) => {
                   type="email"
                   required={true}
                 />
+                            <Button
+              margin="medium"
+              type="submit"
+              value="submit"
+              label="Bekräfta köp"
+              primary={true}
+              disabled={isLoading}
+              color="buttons"
+            />
               </Form>
             </Box>
           )}
           {value === "Swish" && (
             <Box width="small" margin="medium">
-              <Form validate="blur">
+              <Form validate="submit" onSubmit={() => {
+                  setLoading(true);
+                  CreateOrder(
+                    cart,
+                    userData,
+                    shippingData.selectedShipping
+                  ).then((resolve) => {
+                    setComplete(true);
+                  });
+                }
+              }>
                 <FormField
                   name="tel"
                   autoComplete="on"
@@ -77,12 +107,26 @@ export const Payment = (props: Props) => {
                   }}
                 />
                 <br />
+                <Button
+              margin="medium"
+              type="submit"
+              value="submit"
+              label="Bekräfta köp"
+              primary={true}
+              disabled={isLoading}
+              color="buttons"
+            />
               </Form>
             </Box>
-          )}
+          )}               
+          
+          
+          
+          <Form validate="submit">
+
           {value === "Kort" && (
+
             <Box width={size === "xsmall" ? "small" : "medium"} margin="medium">
-              <Form validate="submit">
                 <Text size={size === "xsmall" ? "small" : "medium"}>Namn</Text>
                 <FormField
                   name="cc-name"
@@ -96,7 +140,6 @@ export const Payment = (props: Props) => {
                     message: "Använd bokstäver",
                   }}
                 />
-              </Form>
               <br />
               <Text size={size === "xsmall" ? "small" : "medium"}>
                 Giltighetsdatum
@@ -207,37 +250,42 @@ export const Payment = (props: Props) => {
               />
               {cvc.length === 3 ? <CheckboxSelected /> : ""}
               <br />
-            </Box>
+                        <Button
+                        margin="medium"
+                        type="submit"
+                        value="submit"
+                        label="Bekräfta köp"
+                        primary={true}
+                        disabled={isLoading}
+                        color="buttons"
+                        onClick={() => {
+                          if (
+                            cvc.length === 3 &&
+                            userData.name &&
+                            date.length === (6 || 7) &&
+                            cardnr.length === 19
+                          ) { 
+                            setLoading(true);
+                            CreateOrder(
+                              cart,
+                              userData,
+                              shippingData.selectedShipping
+                            ).then((resolve) => {
+                              setComplete(true);
+                            });
+                          }
+                        }}
+                      />            </Box>
+
           )}
           <Box align="center">
             totalkostnad: {totalCostAllTogether}:-
-            <Button
-              margin="medium"
-              type="submit"
-              value="submit"
-              label="Bekräfta köp"
-              primary={true}
-              disabled={isLoading}
-              color="buttons"
-              onClick={() => {
-                if (
-                  cvc.length === 3 &&
-                  userData.name &&
-                  date.length === (6 || 7) &&
-                  cardnr.length === 19
-                ) {
-                  setLoading(true);
-                  CreateOrder(
-                    cart,
-                    userData,
-                    shippingData.selectedShipping
-                  ).then((resolve) => {
-                    setComplete(true);
-                  });
-                }
-              }}
-            />
           </Box>
+          </Form>
+
+
+
+
           <Box>
             {cart.map((item) => (
               <Box
@@ -260,6 +308,7 @@ export const Payment = (props: Props) => {
             ))}
           </Box>
         </Box>
+
       )}
     </ResponsiveContext.Consumer>
   );
